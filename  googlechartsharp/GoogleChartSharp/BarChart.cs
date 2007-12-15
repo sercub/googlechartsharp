@@ -45,7 +45,7 @@ namespace GoogleChartSharp
         protected override void collectUrlElements()
         {
             base.collectUrlElements();
-            if (this.barWidth != null)
+            if (this.barWidth != 0)
             {
                 base.urlElements.Enqueue(String.Format("chbh={0}", this.barWidth));
             }
