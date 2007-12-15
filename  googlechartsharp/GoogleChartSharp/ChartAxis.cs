@@ -8,6 +8,9 @@ namespace GoogleChartSharp
     {
         ChartAxisType axisType;
         List<ChartAxisLabel> axisLabels = new List<ChartAxisLabel>();
+        int upperBound;
+        int lowerBound;
+        bool rangeSet;
 
         public ChartAxis(ChartAxisType axisType) : this(axisType, null)
         {
@@ -24,6 +27,13 @@ namespace GoogleChartSharp
                     this.axisLabels.Add(new ChartAxisLabel(label, -1));
                 }
             }
+        }
+
+        public void SetRange(int lowerBound, int upperBound)
+        {
+            this.lowerBound = lowerBound;
+            this.upperBound = upperBound;
+            this.rangeSet = true;
         }
 
         public void AddLabel(ChartAxisLabel axisLabel)
@@ -73,6 +83,15 @@ namespace GoogleChartSharp
                 result += axisLabel.Position.ToString() + ",";
             }
             return result.TrimEnd(",".ToCharArray());
+        }
+
+        public string urlRange()
+        {
+            if (rangeSet)
+            {
+                return lowerBound.ToString() + "," + upperBound.ToString();
+            }
+            return null;
         }
     }
 

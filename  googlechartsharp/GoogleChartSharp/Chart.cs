@@ -180,6 +180,8 @@ namespace GoogleChartSharp
                 string axisTypes = "chxt=";
                 string axisLabels = "chxl=";
                 string axisLabelPositions = "chxp=";
+                string axisRange = "chxr=";
+
                 int axisIndex = 0;
                 foreach (ChartAxis axis in axises)
                 {
@@ -190,14 +192,22 @@ namespace GoogleChartSharp
                     {
                         axisLabelPositions += axisIndex.ToString() + "," + labelPositions + "|";
                     }
+                    string axisRangeStr = axis.urlRange();
+                    if (!String.IsNullOrEmpty(axisRangeStr))
+                    {
+                        axisRange += axisIndex.ToString() + "," + axisRangeStr + "|";
+                    }
                     axisIndex++;
                 }
                 axisTypes = axisTypes.TrimEnd(",".ToCharArray());
                 axisLabels = axisLabels.TrimEnd("|".ToCharArray());
                 axisLabelPositions = axisLabelPositions.TrimEnd("|".ToCharArray());
+                axisRange = axisRange.TrimEnd("|".ToCharArray());
+
                 urlElements.Enqueue(axisTypes);
                 urlElements.Enqueue(axisLabels);
                 urlElements.Enqueue(axisLabelPositions);
+                urlElements.Enqueue(axisRange);
             }
         }
 
