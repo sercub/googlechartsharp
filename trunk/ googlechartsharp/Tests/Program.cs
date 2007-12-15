@@ -55,6 +55,8 @@ namespace Tests
                 data = new int[] { 0, 10, 20, 30, -1, 40 };
                 BarChart barChart = new BarChart(150, 150, BarChartOrientation.Horizontal, BarChartStyle.Stacked);
                 barChart.SetData(data);
+                ChartAxis leftAxis = new ChartAxis(ChartAxisType.Left, new string[] { "a", "b", "c", "d", "e", "f" });
+                barChart.AddAxis(leftAxis);
                 tw.WriteLine(getImageTag(barChart.GetUrl()));
 
                 // Vertical Stacked Bar Chart
