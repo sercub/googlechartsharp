@@ -89,7 +89,10 @@ namespace GoogleChartSharp
             urlElements.Enqueue(String.Format("cht={0}", this.chartType()));
             urlElements.Enqueue(String.Format("chs={0}x{1}", this.width, this.height));
             urlElements.Enqueue(this.data);
-            urlElements.Enqueue(String.Format("chtt={0}", this.title));
+            if (title != null)
+            {
+                urlElements.Enqueue(String.Format("chtt={0}", this.title));
+            }
             if (titleColor != null)
             {
                 urlElements.Enqueue(String.Format("chts={0}", this.titleColor));
