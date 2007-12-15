@@ -54,7 +54,7 @@ namespace Tests
                 fDataList.Add(fdata);
                 fdata = new float[] { 100, 90, 40, 20, 10 };
                 fDataList.Add(fdata);
-                LineChart xyLineChart = new LineChart(150, 150, true);
+                LineChart xyLineChart = new LineChart(150, 150, LineChartType.MultiDataSet);
                 xyLineChart.SetData(fDataList);
                 xyLineChart.SetDatasetColors(new string[] { "FF0000", "00FF00" });
                 xyLineChart.SetLegend(new string[] {"First", "Second"});
