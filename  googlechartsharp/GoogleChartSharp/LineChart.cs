@@ -4,25 +4,31 @@ using System.Text;
 
 namespace GoogleChartSharp
 {
+    public enum LineChartType
+    {
+        SingleDataSet,
+        MultiDataSet
+    }
+
     public class LineChart : Chart
     {
-        private bool isXY;
+        private LineChartType lineChartType = LineChartType.SingleDataSet;
 
         public LineChart(int width, int height) 
             : base(width, height)
         {
-            
+            this.lineChartType = LineChartType.SingleDataSet;
         }
 
-        public LineChart(int width, int height, bool isXY)
+        public LineChart(int width, int height, LineChartType lineChartType)
             : base(width, height)
         {
-            this.isXY = isXY;
+            this.lineChartType = lineChartType;
         }
 
         public override string chartType()
         {
-            if (this.isXY)
+            if (this.lineChartType == LineChartType.MultiDataSet)
             {
                 return "lxy";
             }
