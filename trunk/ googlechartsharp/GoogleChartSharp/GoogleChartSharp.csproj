@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Chart.cs" />
     <Compile Include="ChartData.cs" />
+    <Compile Include="LineChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

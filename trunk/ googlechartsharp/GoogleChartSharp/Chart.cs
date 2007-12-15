@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GoogleChartSharp
 {
-    public class Chart
+    public abstract class Chart
     {
 
         private const string API_BASE = "http://chart.apis.google.com/chart?";
@@ -59,9 +59,12 @@ namespace GoogleChartSharp
             this.data = ChartData.Encode(data);
         }
 
+        public abstract string chartType();
+
         private void collectUrlElements()
         {
             urlElements.Clear();
+            urlElements.Enqueue(this.chartType());
             urlElements.Enqueue(String.Format("chs={0}x{1}", this.Width, this.Height));
             urlElements.Enqueue(this.data);
         }
