@@ -15,25 +15,31 @@ namespace Tests
             using (TextWriter tw = new StreamWriter(("test.html")))
             {
                 int[] data;
+                float[] fdata;
                 List<int[]> intDataList = new List<int[]>();
+                List<float[]> fDataList = new List<float[]>();
 
                 tw.WriteLine("<h3>Line Charts</h3>");
 
                 # region Line Charts
                 // Test Line Chart
-                data = new int[] { 0, 10, 20, 30, 40, -1, 60 };
+                data = new int[] { 40, 30, 20, 10, 0 };
                 LineChart chart = new LineChart(150, 150);
                 chart.SetData(data);
                 tw.WriteLine(getImageTag(chart.GetUrl()));
 
                 // Test XY Line Chart
-                intDataList.Clear();
-                data = new int[] { 0, 10, 20, 30, 40 };
-                intDataList.Add(data);
-                data = new int[] { 0, 1, 5, 10, 20 };
-                intDataList.Add(data);
+                fDataList.Clear();
+                fdata = new float[] { 0, 30, 60, 70, 90, 95, 100 };
+                fDataList.Add(fdata);
+                fdata = new float[] { 20, 30, 40, 50, 60, 70, 80 };
+                fDataList.Add(fdata);
+                fdata = new float[] { 10, 30, 40, 45, 52 };
+                fDataList.Add(fdata);
+                fdata = new float[] { 100, 90, 40, 20, 10 };
+                fDataList.Add(fdata);
                 LineChart xyLineChart = new LineChart(150, 150, true);
-                xyLineChart.SetData(intDataList);
+                xyLineChart.SetData(fDataList);
                 tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
                 #endregion
 
