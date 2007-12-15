@@ -179,17 +179,25 @@ namespace GoogleChartSharp
             {
                 string axisTypes = "chxt=";
                 string axisLabels = "chxl=";
+                string axisLabelPositions = "chxp=";
                 int axisIndex = 0;
                 foreach (ChartAxis axis in axises)
                 {
                     axisTypes += axis.urlAxisType() + ",";
                     axisLabels += axisIndex.ToString() + ":" + axis.urlLabels();
+                    string labelPositions = axis.urlLabelPositions();
+                    if (! String.IsNullOrEmpty(labelPositions))
+                    {
+                        axisLabelPositions += axisIndex.ToString() + "," + labelPositions + "|";
+                    }
                     axisIndex++;
                 }
                 axisTypes = axisTypes.TrimEnd(",".ToCharArray());
                 axisLabels = axisLabels.TrimEnd("|".ToCharArray());
+                axisLabelPositions = axisLabelPositions.TrimEnd("|".ToCharArray());
                 urlElements.Enqueue(axisTypes);
                 urlElements.Enqueue(axisLabels);
+                urlElements.Enqueue(axisLabelPositions);
             }
         }
 
