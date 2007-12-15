@@ -23,6 +23,7 @@ namespace GoogleChartSharp
         private string[] datasetColors;
         List<string> fills = new List<string>();
         List<string> legendStrings = new List<string>();
+        List<ChartAxis> axises = new List<ChartAxis>();
 
         public Chart(int width, int height)
         {
@@ -109,6 +110,7 @@ namespace GoogleChartSharp
         }
         #endregion
 
+        #region Labels
         public void SetLegend(string[] strs)
         {
             foreach (string s in strs)
@@ -116,6 +118,12 @@ namespace GoogleChartSharp
                 legendStrings.Add(s);
             }
         }
+
+        public void AddAxis(ChartAxis axis)
+        {
+            axises.Add(axis);
+        }
+        #endregion
 
         public string GetUrl()
         {
@@ -166,6 +174,22 @@ namespace GoogleChartSharp
                     s += str + "|";
                 }
                 urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
+            }
+            if (axises.Count > 0)
+            {
+                string axisTypes = "chxt=";
+                string axisLabels = "chxl=";
+                int axisIndex = 0;
+                foreach (ChartAxis axis in axises)
+                {
+                    axisTypes += axis.urlAxisType() + ",";
+                    axisLabels += axisIndex.ToString() + ":" + axis.urlLabels();
+                    axisIndex++;
+                }
+                axisTypes = axisTypes.TrimEnd(",".ToCharArray());
+                axisLabels = axisLabels.TrimEnd("|".ToCharArray());
+                urlElements.Enqueue(axisTypes);
+                urlElements.Enqueue(axisLabels);
             }
         }
 
