@@ -1,5 +1,10 @@
+#labels Featured
 == Drawing a Line Chart ==
 {{{
+/*
+A single data set should be contained in an int[] or a float[]
+Use -1 for missing values
+*/
 int [] data = new int[] { 40, 30, 20, 10, 0 };
 
 // Specify chart width and height in pixels
@@ -48,7 +53,7 @@ string imageUrl = chart.GetUrl();
 Each data set should be contained in an int[] or float[]
 To work the multiple data sets add them to a data structure that implements ICollection
 */
-List<float[]> = new List<float[]>();
+List<float[]> dataList = new List<float[]>();
 float[] set1x= new float[] { 0, 30, 60, 70, 90, 95, 100 };
 dataList.Add(fdata);
 float[] set1y = new float[] { 20, 30, 40, 50, 60, 70, 80 };
@@ -57,4 +62,15 @@ float[] set2x = new float[] { 10, 30, 40, 45, 52 };
 dataList.Add(fdata);
 float[] set2y = new float[] { 100, 90, 40, 20, 10 };
 dataList.Add(fdata);
+
+LineChart lineChart = new LineChart(150, 150, LineChartType.MultiDataSet);
+lineChart.SetData(dataList);
+
+// Optional : Provide a hex color for each pair of data sets
+lineChart.SetDatasetColors(new string[] { "FF0000", "00FF00" });
+
+// Optional : Provide a label for each pair of data sets
+lineChart.SetLegend(new string[] {"First", "Second"});
+
+string url = lineChart.GetUrl();
 }}}
