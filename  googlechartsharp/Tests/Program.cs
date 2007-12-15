@@ -25,6 +25,8 @@ namespace Tests
                 // Test Line Chart
                 data = new int[] { 40, 30, 20, 10, 0 };
                 LineChart chart = new LineChart(150, 150);
+                chart.SetTitle("Simple Line Chart", "FF0000");
+                chart.AddSolidFill(ChartFillTarget.Background, "EFEFEF");
                 chart.SetData(data);
                 tw.WriteLine(getImageTag(chart.GetUrl()));
 
@@ -40,6 +42,7 @@ namespace Tests
                 fDataList.Add(fdata);
                 LineChart xyLineChart = new LineChart(150, 150, true);
                 xyLineChart.SetData(fDataList);
+                xyLineChart.SetDatasetColors(new string[] { "FF0000", "00FF00" });
                 tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
                 #endregion
 
