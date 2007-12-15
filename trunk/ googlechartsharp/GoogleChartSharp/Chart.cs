@@ -31,15 +31,27 @@ namespace GoogleChartSharp
             this.height = height;
         }
 
-        public void SetData(object[] data)
+        #region Chart Data
+        public void SetData(int[] data)
         {
             this.data = ChartData.Encode(data);
         }
 
-        public void SetData(ICollection<object[]> data)
+        public void SetData(ICollection<int[]> data)
         {
             this.data = ChartData.Encode(data);
         }
+
+        public void SetData(float[] data)
+        {
+            this.data = ChartData.Encode(data);
+        }
+
+        public void SetData(ICollection<float[]> data)
+        {
+            this.data = ChartData.Encode(data);
+        }
+        #endregion
 
         # region Chart Title
         public void SetTitle(string title)
