@@ -84,12 +84,11 @@ namespace Tests
 
                 # region Scatter Plots
                 tw.WriteLine("<h3>Scatter Plots</h3>");
+                intDataList.Clear();
                 ScatterPlot scatter = new ScatterPlot(150, 150);
                 data = new int[] { 10, 20, 30, 40, 50 };
                 intDataList.Add(data);
                 data = new int[] { 10, 20, 30, 40, 50 };
-                intDataList.Add(data);
-                data = new int[] { 1, 2, 3, 4, 5 };
                 intDataList.Add(data);
                 scatter.SetData(intDataList);
                 tw.WriteLine(getImageTag(scatter.GetUrl()));
