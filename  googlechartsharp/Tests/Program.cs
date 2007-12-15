@@ -43,9 +43,9 @@ namespace Tests
             Console.WriteLine(ChartData.ExtendedEncoding(extendedTest3));
             Console.WriteLine(ChartData.ExtendedEncoding(extendedList));
 
-            Chart chart = new Chart(100, 200);
-            chart.SetData(extendedTest3);
-            Console.WriteLine(chart.Url);
+            LineChart chart = new LineChart(100, 200);
+            chart.SetData(test);
+            System.Diagnostics.Debug.WriteLine(chart.Url);
 
             //Console.WriteLine(Data.maxValue(test));
             //Console.WriteLine(Data.maxValue(test2));
