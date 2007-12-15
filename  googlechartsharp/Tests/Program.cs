@@ -24,16 +24,22 @@ namespace Tests
                 # region Line Charts
                 // Test Line Chart
                 data = new int[] { 40, 30, 20, 10, 0 };
+
                 LineChart chart = new LineChart(150, 150);
                 chart.SetTitle("Simple Line Chart", "FF0000");
                 chart.AddSolidFill(ChartFillTarget.Background, "EFEFEF");
                 chart.SetData(data);
-                chart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
+
+                ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
+                bottomAxis.SetRange(0, 500);
+                chart.AddAxis(bottomAxis);
+
                 ChartAxis topAxis = new ChartAxis(ChartAxisType.Top);
                 topAxis.AddLabel(new ChartAxisLabel("one", 0));
                 topAxis.AddLabel(new ChartAxisLabel("two", 75));
                 topAxis.AddLabel(new ChartAxisLabel("three", 100));
                 chart.AddAxis(topAxis);
+
                 tw.WriteLine(getImageTag(chart.GetUrl()));
 
                 // Test XY Line Chart
