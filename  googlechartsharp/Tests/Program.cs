@@ -29,7 +29,11 @@ namespace Tests
                 chart.AddSolidFill(ChartFillTarget.Background, "EFEFEF");
                 chart.SetData(data);
                 chart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
-                chart.AddAxis(new ChartAxis(ChartAxisType.Top, new string[] { "one", "two", "three" }));
+                ChartAxis topAxis = new ChartAxis(ChartAxisType.Top);
+                topAxis.AddLabel(new ChartAxisLabel("one", 0));
+                topAxis.AddLabel(new ChartAxisLabel("two", 75));
+                topAxis.AddLabel(new ChartAxisLabel("three", 100));
+                chart.AddAxis(topAxis);
                 tw.WriteLine(getImageTag(chart.GetUrl()));
 
                 // Test XY Line Chart
