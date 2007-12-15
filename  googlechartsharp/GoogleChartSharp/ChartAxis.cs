@@ -4,6 +4,14 @@ using System.Text;
 
 namespace GoogleChartSharp
 {
+    public enum AxisAlignmentType
+    {
+        Left,
+        Centered,
+        Right,
+        Unset
+    }
+
     public class ChartAxis
     {
         ChartAxisType axisType;
@@ -11,6 +19,27 @@ namespace GoogleChartSharp
         int upperBound;
         int lowerBound;
         bool rangeSet;
+        string hexColor;
+        int fontSize = -1;
+        AxisAlignmentType alignment = AxisAlignmentType.Unset;
+
+        public string HexColor
+        {
+            get { return hexColor; }
+            set { hexColor = value; }
+        }
+
+        public int FontSize
+        {
+            get { return fontSize; }
+            set { fontSize = value; }
+        }
+
+        public AxisAlignmentType Alignment
+        {
+            get { return alignment; }
+            set { alignment = value; }
+        }
 
         public ChartAxis(ChartAxisType axisType) : this(axisType, null)
         {
@@ -39,6 +68,37 @@ namespace GoogleChartSharp
         public void AddLabel(ChartAxisLabel axisLabel)
         {
             axisLabels.Add(axisLabel);
+        }
+
+        public string UrlAxisStyle()
+        {
+            if (hexColor == null)
+            {
+                return null;
+            }
+            string result = hexColor + ",";
+            if (fontSize != -1)
+            {
+                result += fontSize.ToString() + ",";
+            }
+
+            if (alignment != AxisAlignmentType.Unset)
+            {
+                switch (alignment)
+                {
+                    case AxisAlignmentType.Left:
+                        result += "-1,";
+                        break;
+                    case AxisAlignmentType.Centered:
+                        result += "0,";
+                        break;
+                    case AxisAlignmentType.Right:
+                        result += "1,";
+                        break;
+                }
+            }
+
+            return result.TrimEnd(",".ToCharArray());
         }
 
         public string urlAxisType()
