@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="BarChart.cs" />
     <Compile Include="Chart.cs" />
+    <Compile Include="ChartAxis.cs" />
     <Compile Include="ChartData.cs" />
     <Compile Include="PieChart.cs" />
     <Compile Include="VennDiagram.cs" />

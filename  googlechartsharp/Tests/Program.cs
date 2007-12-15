@@ -28,6 +28,8 @@ namespace Tests
                 chart.SetTitle("Simple Line Chart", "FF0000");
                 chart.AddSolidFill(ChartFillTarget.Background, "EFEFEF");
                 chart.SetData(data);
+                chart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
+                chart.AddAxis(new ChartAxis(ChartAxisType.Top, new string[] { "one", "two", "three" }));
                 tw.WriteLine(getImageTag(chart.GetUrl()));
 
                 // Test XY Line Chart
