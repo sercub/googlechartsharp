@@ -6,46 +6,28 @@ namespace GoogleChartSharp
 {
     public abstract class Chart
     {
-
         private const string API_BASE = "http://chart.apis.google.com/chart?";
-        private Queue<string> urlElements = new Queue<string>();
-
-        #region Properties
-
-        private int height;
-        public int Height
-        {
-            get { return height; }
-            set { height = value; }
-        }
+        protected Queue<string> urlElements = new Queue<string>();
 
         private int width;
-        public int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
-
-        public string Url
-        {
-            get 
-            {
-                collectUrlElements();
-                return generateUrlString(); 
-            }
-        }
-
+        private int height;
         private string data;
-        public string Data
-        {
-            get { return data; }
-        }
-
-        #endregion
+        private string title;
+        private string titleColor;
 
         public Chart(int width, int height)
         {
             this.width = width;
+            this.height = height;
+        }
+
+        public void SetWidth(int width)
+        {
+            this.width = width;
+        }
+
+        public void SetHeight(int height)
+        {
             this.height = height;
         }
 
@@ -59,14 +41,47 @@ namespace GoogleChartSharp
             this.data = ChartData.Encode(data);
         }
 
+        # region Chart Title
+        public void SetTitle(string title)
+        {
+            string urlTitle = title.Replace(" ", "+");
+            urlTitle = urlTitle.Replace(Environment.NewLine, "|");
+            this.title = urlTitle;
+        }
+
+        public void SetTitle(string title, string hexColor)
+        {
+            SetTitle(title);
+            this.titleColor = hexColor;
+        }
+
+        public void SetTitle(string title, string hexColor, int fontSize)
+        {
+            SetTitle(title);
+            this.titleColor = hexColor + "," + fontSize;
+        }
+        #endregion
+
+        public string GetUrl()
+        {
+            collectUrlElements();
+            return generateUrlString();
+        }
+
         public abstract string chartType();
 
-        private void collectUrlElements()
+
+        protected virtual void collectUrlElements()
         {
             urlElements.Clear();
-            urlElements.Enqueue(this.chartType());
-            urlElements.Enqueue(String.Format("chs={0}x{1}", this.Width, this.Height));
+            urlElements.Enqueue(String.Format("cht={0}", this.chartType()));
+            urlElements.Enqueue(String.Format("chs={0}x{1}", this.width, this.height));
             urlElements.Enqueue(this.data);
+            urlElements.Enqueue(String.Format("chtt={0}", this.title));
+            if (titleColor != null)
+            {
+                urlElements.Enqueue(String.Format("chts={0}", this.titleColor));
+            }
         }
 
         private string generateUrlString()

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using GoogleChartSharp;
+using System.Diagnostics;
+using System.Drawing;
 
 namespace Tests
 {
@@ -9,8 +11,8 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            object[] test = new object[] {0, 19, 27, 53, 61};
-            object[] test2 = new object[] { 0, 1, 2, 3, 4, null, 5 };
+            object[] test = new object[] { 0, 1, 2, 3, 4, 50 };
+            object[] test2 = new object[] { 0, 1, 2, 3, 4, 50 };
 
             List<object[]> oList = new List<object[]>();
             oList.Add(test);
@@ -43,14 +45,10 @@ namespace Tests
             Console.WriteLine(ChartData.ExtendedEncoding(extendedTest3));
             Console.WriteLine(ChartData.ExtendedEncoding(extendedList));
 
-            LineChart chart = new LineChart(100, 200);
+            BarChart chart = new BarChart(300, 300, BarChartOrientation.Horizontal, BarChartStyle.Stacked);
+            chart.SetBarWidth(10);
             chart.SetData(test);
-            System.Diagnostics.Debug.WriteLine(chart.Url);
-
-            //Console.WriteLine(Data.maxValue(test));
-            //Console.WriteLine(Data.maxValue(test2));
-            //Console.WriteLine(Data.maxValue(textTest2));
-            //Console.WriteLine(Data.maxValue(extendedTest3));
+            Process.Start(chart.GetUrl());
         }
     }
 }
