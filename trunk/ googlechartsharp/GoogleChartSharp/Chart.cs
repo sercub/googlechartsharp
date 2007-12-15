@@ -4,6 +4,12 @@ using System.Text;
 
 namespace GoogleChartSharp
 {
+    public enum ChartFillTarget
+    {
+        Background,
+        ChartArea
+    }
+
     public abstract class Chart
     {
         private const string API_BASE = "http://chart.apis.google.com/chart?";
@@ -14,6 +20,8 @@ namespace GoogleChartSharp
         private string data;
         private string title;
         private string titleColor;
+        private string[] datasetColors;
+        List<string> fills = new List<string>();
 
         public Chart(int width, int height)
         {
@@ -21,6 +29,7 @@ namespace GoogleChartSharp
             this.height = height;
         }
 
+        #region Chart Dimensions
         public void SetWidth(int width)
         {
             this.width = width;
@@ -30,6 +39,7 @@ namespace GoogleChartSharp
         {
             this.height = height;
         }
+        #endregion
 
         #region Chart Data
         public void SetData(int[] data)
@@ -74,6 +84,28 @@ namespace GoogleChartSharp
         }
         #endregion
 
+        public void SetDatasetColors(string[] datasetColors)
+        {
+            this.datasetColors = datasetColors;
+        }
+
+        public void AddSolidFill(ChartFillTarget target, string color)
+        {
+            string fillString = string.Empty;
+            switch (target)
+            {
+                case ChartFillTarget.Background:
+                    fillString += "bg,";
+                    break;
+                case ChartFillTarget.ChartArea:
+                    fillString += "c,";
+                    break;
+            }
+
+            fillString += "s," + color;
+            fills.Add(fillString);
+        }
+
         public string GetUrl()
         {
             collectUrlElements();
@@ -96,6 +128,24 @@ namespace GoogleChartSharp
             if (titleColor != null)
             {
                 urlElements.Enqueue(String.Format("chts={0}", this.titleColor));
+            }
+            if (datasetColors != null)
+            {
+                string s = "chco=";
+                foreach (string color in datasetColors)
+                {
+                    s += color + ",";
+                }
+                urlElements.Enqueue(s.TrimEnd(",".ToCharArray()));
+            }
+            if (fills.Count > 0)
+            {
+                string s = "chf=";
+                foreach (string fillString in fills)
+                {
+                    s += fillString + "|";
+                }
+                urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
         }
 
