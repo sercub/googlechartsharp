@@ -4,29 +4,30 @@ using System.Text;
 
 namespace GoogleChartSharp
 {
-    public class LineChart : Chart
+    public class PieChart : Chart
     {
-        private bool isXY;
+        private bool is3D;
 
-        public LineChart(int width, int height) 
+        public PieChart(int width, int height)
             : base(width, height)
         {
-            
+
         }
 
-        public LineChart(int width, int height, bool isXY)
+        public PieChart(int width, int height, bool is3D)
             : base(width, height)
         {
-            this.isXY = isXY;
+            this.is3D = is3D;
         }
 
         public override string chartType()
         {
-            if (this.isXY)
+            if (is3D)
             {
-                return "lxy";
+                return "p3";
             }
-            return "lc";
+
+            return "p";
         }
     }
 }
