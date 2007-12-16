@@ -1,0 +1,62 @@
+#Explains chart data and datasets.
+
+== Single Dataset ==
+A single dataset can be contained in either an int[] or a float[]. You set a chart's data set using the Chart.SetData() method.
+
+For example:
+{{{
+using GoogleChartSharp;
+
+/*
+Create a single integer dataset
+*/
+int[] intData = new int[] {0, 10, 20, 30, 40};
+
+/*
+Create a single float dataset
+*/
+float[] floatData = new float[] {0.0, 0.5, 1.0, 1.5, 2.0};
+
+/* 
+Create a new line chart with width 150 and height 150.
+*/
+LineChart lineChart = new LineChart(150, 150);
+
+/*
+Set the chart to use the integer dataset
+*/
+lineChart.SetData(intData);
+string url = lineChart.GetUrl();
+
+/*
+Set the chart to use the float dataset
+*/
+lineChart.SetData(floatData);
+string otherUrl = lineChart.GetUrl();
+}}}
+
+=== Multiple Datasets ===
+A chart can also use multiple datasets. The datasets (of type int[] or float[]) must be contained in a data structure that implements the ICollection interface. 
+{{{
+using GoogleChartSharp;
+
+/*
+This pair of datasets describes a line. The first set is the X axis coordinated and the second set is the Y axis coordinates.
+*/
+int[] xCoords = new int[] {0, 10, 20, 30, 40};
+int[] yCoords = new int[] {0, 10, 20, 30, 40};
+
+/*
+Add the pair of datasets to the collection. To draw multiple lines on the chart add additional dataset pairs to the collection.
+*/
+List<int[]> datasets = new List<int[]>();
+line1.Add(xCoords);
+line1.Add(yCoords);
+
+/*
+Note that we have to specify a MultiDataSet line chart type.
+*/
+LineChart lineChart = new LineChart(150, 150, LineChartType.MultiDataSet);
+lineChart.SetData(datasets);
+string url = lineChart.GetUrl();
+}}}
