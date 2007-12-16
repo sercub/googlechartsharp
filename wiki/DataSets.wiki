@@ -1,5 +1,11 @@
 == Dataset Limitations ==
-Please read the [http://code.google.com/apis/chart/#chart_data Developers Guide] section about chart data.
+Please read the [http://code.google.com/apis/chart/#chart_data Chart Data] section of the Google Chart Api Developer's Guide. Even though this library attempts to abstract encoding datasets you should read enough to understand the limitations of the Api.
+
+A dataset of type int[] with values less than or equal to 61 will be encoded using simple encoding.
+
+A dataset of type int[] with values less than or equal to 4095 will be encoded using extended encoding.
+
+A dataset of type float[] with values less than or equal to 100 will be encoded using text encoding.
 
 == Single Dataset ==
 A single dataset can be contained in either an int[] or a float[]. You set a chart's data set using the Chart.SetData() method.
@@ -60,4 +66,11 @@ Note that we have to specify a MultiDataSet line chart type.
 LineChart lineChart = new LineChart(150, 150, LineChartType.MultiDataSet);
 lineChart.SetData(datasets);
 string url = lineChart.GetUrl();
+}}}
+
+== Missing Values ==
+In all dataset types a missing value should be represented by a -1.
+{{{
+int[] intData = new int[] { 0, 10, -1, 30, 40};
+float[] floatData = new float[] { 0.0, 0.5, -1, 1.5, 2.0 };
 }}}
