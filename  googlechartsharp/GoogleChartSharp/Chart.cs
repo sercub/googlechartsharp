@@ -89,18 +89,23 @@ namespace GoogleChartSharp
 
         # region Fills
         List<SolidFill> solidFills = new List<SolidFill>();
-        List<LinearGradient> linearGradients = new List<LinearGradient>();
+        List<LinearGradientFill> linearGradientFills = new List<LinearGradientFill>();
+        List<LinearStripesFill> linearStripesFills = new List<LinearStripesFill>();
 
         public void AddSolidFill(SolidFill solidFill)
         {
             solidFills.Add(solidFill);
         }
 
-        public void AddLinearGradient(LinearGradient linearGradient)
+        public void AddLinearGradientFill(LinearGradientFill linearGradientFill)
         {
-            linearGradients.Add(linearGradient);
+            linearGradientFills.Add(linearGradientFill);
         }
 
+        public void AddLinearStripesFill(LinearStripesFill linearStripesFill)
+        {
+            linearStripesFills.Add(linearStripesFill);
+        }
         #endregion
 
         #region Grid
@@ -268,14 +273,21 @@ namespace GoogleChartSharp
                     fillsString += solidFill.GetUrlString() + "|";
                 }
             }
-            if (linearGradients.Count > 0)
+            if (linearGradientFills.Count > 0)
             {
-                foreach (LinearGradient linearGradient in linearGradients)
+                foreach (LinearGradientFill linearGradient in linearGradientFills)
                 {
                     fillsString += linearGradient.GetUrlString() + "|";
                 }
             }
-            if (solidFills.Count > 0 || linearGradients.Count > 0)
+            if (linearStripesFills.Count > 0)
+            {
+                foreach (LinearStripesFill linearStripesFill in linearStripesFills)
+                {
+                    fillsString += linearStripesFill.GetUrlString() + "|";
+                }
+            }
+            if (solidFills.Count > 0 || linearGradientFills.Count > 0 || linearStripesFills.Count > 0)
             {
                 urlElements.Enqueue(fillsString.TrimEnd("|".ToCharArray()));
             }
