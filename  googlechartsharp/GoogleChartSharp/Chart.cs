@@ -18,7 +18,7 @@ namespace GoogleChartSharp
         List<string> fills = new List<string>();
         List<string> legendStrings = new List<string>();
         List<ChartAxis> axises = new List<ChartAxis>();
-        List<ShapeMarker> shapeMarkers = new List<ShapeMarker>();
+        
 
         public Chart(int width, int height)
         {
@@ -159,10 +159,17 @@ namespace GoogleChartSharp
         #endregion
 
         #region Markers
+        List<ShapeMarker> shapeMarkers = new List<ShapeMarker>();
+        List<RangeMarker> rangeMarkers = new List<RangeMarker>();
 
         public void AddShapeMarker(ShapeMarker shapeMarker)
         {
             this.shapeMarkers.Add(shapeMarker);
+        }
+
+        public void AddRangeMarker(RangeMarker rangeMarker)
+        {
+            this.rangeMarkers.Add(rangeMarker);
         }
 
         private string getShapeMarkersUrlElement()
@@ -171,6 +178,16 @@ namespace GoogleChartSharp
             foreach (ShapeMarker shapeMarker in shapeMarkers)
             {
                 s += shapeMarker.GetUrlString() + "|";
+            }
+            return s.TrimEnd("|".ToCharArray());
+        }
+
+        private string getRangeMarkersUrlElement()
+        {
+            string s = string.Empty;
+            foreach (RangeMarker rangeMarker in rangeMarkers)
+            {
+                s += rangeMarker.GetUrlString() + "|";
             }
             return s.TrimEnd("|".ToCharArray());
         }
@@ -292,11 +309,18 @@ namespace GoogleChartSharp
             }
             
             // Markers
+            string markersString = "chm=";
             if (shapeMarkers.Count > 0)
             {
-                string s = "chm=";
-                s += getShapeMarkersUrlElement();
-                urlElements.Enqueue(s);
+                markersString += getShapeMarkersUrlElement() + "|";
+            }
+            if (rangeMarkers.Count > 0)
+            {
+                markersString += getRangeMarkersUrlElement() + "|";
+            }
+            if (shapeMarkers.Count > 0 || rangeMarkers.Count > 0)
+            {
+                urlElements.Enqueue(markersString.TrimEnd("|".ToCharArray()));
             }
         }
 
