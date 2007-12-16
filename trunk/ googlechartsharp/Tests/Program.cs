@@ -54,11 +54,12 @@ namespace Tests
                 fDataList.Add(fdata);
                 fdata = new float[] { 100, 90, 40, 20, 10 };
                 fDataList.Add(fdata);
-                LineChart xyLineChart = new LineChart(150, 150, LineChartType.MultiDataSet);
+                LineChart xyLineChart = new LineChart(300, 150, LineChartType.MultiDataSet);
                 xyLineChart.SetData(fDataList);
                 xyLineChart.SetDatasetColors(new string[] { "FF0000", "00FF00" });
                 xyLineChart.AddLineStyle(new LineStyle(3, 6, 3));
                 xyLineChart.SetLegend(new string[] {"First", "Second"});
+                xyLineChart.SetGrid(20, 50, 1, 0);
                 tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
                 #endregion
 
@@ -115,6 +116,7 @@ namespace Tests
                 data = new int[] { 10, 20, 30, 40, 50 };
                 intDataList.Add(data);
                 scatter.SetData(intDataList);
+                scatter.SetGrid(20, 50);
                 tw.WriteLine(getImageTag(scatter.GetUrl()));
                 #endregion
             }

@@ -12,9 +12,14 @@ namespace GoogleChartSharp
 
         }
 
-        public override string chartType()
+        public override string urlChartType()
         {
             return "s";
+        }
+
+        public override ChartType getChartType()
+        {
+            return ChartType.ScatterPlot;
         }
     }
 }

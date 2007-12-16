@@ -29,7 +29,7 @@ namespace GoogleChartSharp
             this.style = style;
         }
 
-        public override string chartType()
+        public override string urlChartType()
         {
             char orientationChar = this.orientation == BarChartOrientation.Horizontal ? 'h' : 'v';
             char styleChar = this.style == BarChartStyle.Stacked ? 's' : 'g';
@@ -49,6 +49,11 @@ namespace GoogleChartSharp
             {
                 base.urlElements.Enqueue(String.Format("chbh={0}", this.barWidth));
             }
+        }
+
+        public override ChartType getChartType()
+        {
+            return ChartType.BarChart;
         }
     }
 }
