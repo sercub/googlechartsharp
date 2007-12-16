@@ -56,6 +56,7 @@ namespace Tests
                 LineChart xyLineChart = new LineChart(150, 150, LineChartType.MultiDataSet);
                 xyLineChart.SetData(fDataList);
                 xyLineChart.SetDatasetColors(new string[] { "FF0000", "00FF00" });
+                xyLineChart.AddLineStyle(new LineStyle(3, 6, 3));
                 xyLineChart.SetLegend(new string[] {"First", "Second"});
                 tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
                 #endregion
