@@ -6,11 +6,11 @@ namespace GoogleChartSharp
 {
     public class ShapeMarker
     {
-        ShapeMarkerType markerType;
-        public ShapeMarkerType MarkerType
+        ShapeMarkerType type;
+        public ShapeMarkerType Type
         {
-            get { return markerType; }
-            set { markerType = value; }
+            get { return type; }
+            set { type = value; }
         }
 
         string hexColor;
@@ -63,16 +63,16 @@ namespace GoogleChartSharp
         /// <param name="size">the size of the marker in pixels</param>
         public ShapeMarker(ShapeMarkerType markerType, string hexColor, int datasetIndex, float dataPoint, int size)
         {
-            this.markerType = markerType;
+            this.type = markerType;
             this.hexColor = hexColor;
             this.datasetIndex = datasetIndex;
             this.dataPoint = dataPoint;
             this.size = size;
         }
 
-        private string GetShapeTypeUrlChar()
+        private string GetTypeUrlChar()
         {
-            switch (this.markerType)
+            switch (this.type)
             {
                 case ShapeMarkerType.Arrow:
                     return "a";
@@ -99,7 +99,7 @@ namespace GoogleChartSharp
         public string GetUrlString()
         {
             string s = string.Empty;
-            s += GetShapeTypeUrlChar() + ",";
+            s += GetTypeUrlChar() + ",";
             s += hexColor + ",";
             s += datasetIndex + ",";
             s += dataPoint + ",";

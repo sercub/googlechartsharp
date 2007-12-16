@@ -38,6 +38,7 @@
     <Compile Include="Chart.cs" />
     <Compile Include="ChartAxis.cs" />
     <Compile Include="ChartData.cs" />
+    <Compile Include="RangeMarker.cs" />
     <Compile Include="ShapeMarker.cs" />
     <Compile Include="PieChart.cs" />
     <Compile Include="VennDiagram.cs" />
