@@ -62,6 +62,7 @@ namespace Tests
                 xyLineChart.AddLineStyle(new LineStyle(3, 6, 3));
                 xyLineChart.SetLegend(new string[] {"First", "Second"});
                 xyLineChart.SetGrid(20, 50, 1, 0);
+                xyLineChart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, "E5ECF9", 0.2, 0.7));
                 tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
                 #endregion
 
