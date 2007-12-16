@@ -9,8 +9,6 @@ namespace GoogleChartSharp
         private const string API_BASE = "http://chart.apis.google.com/chart?";
         protected Queue<string> urlElements = new Queue<string>();
 
-        List<ChartAxis> axises = new List<ChartAxis>();
-        
         public Chart(int width, int height)
         {
             this.width = width;
@@ -91,11 +89,18 @@ namespace GoogleChartSharp
 
         # region Fills
         List<SolidFill> solidFills = new List<SolidFill>();
+        List<LinearGradient> linearGradients = new List<LinearGradient>();
 
         public void AddSolidFill(SolidFill solidFill)
         {
             solidFills.Add(solidFill);
         }
+
+        public void AddLinearGradient(LinearGradient linearGradient)
+        {
+            linearGradients.Add(linearGradient);
+        }
+
         #endregion
 
         #region Grid
@@ -204,6 +209,7 @@ namespace GoogleChartSharp
         #endregion
 
         #region Labels
+        List<ChartAxis> axises = new List<ChartAxis>();
         List<string> legendStrings = new List<string>();
 
         public virtual void SetLegend(string[] strs)
@@ -253,15 +259,25 @@ namespace GoogleChartSharp
                 urlElements.Enqueue(s.TrimEnd(",".ToCharArray()));
             }
 
-            // Solid Fills
+            // Fills
+            string fillsString = "chf=";
             if (solidFills.Count > 0)
             {
-                string s = "chf=";
                 foreach (SolidFill solidFill in solidFills)
                 {
-                    s += solidFill.GetUrlString() + "|";
+                    fillsString += solidFill.GetUrlString() + "|";
                 }
-                urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
+            }
+            if (linearGradients.Count > 0)
+            {
+                foreach (LinearGradient linearGradient in linearGradients)
+                {
+                    fillsString += linearGradient.GetUrlString() + "|";
+                }
+            }
+            if (solidFills.Count > 0 || linearGradients.Count > 0)
+            {
+                urlElements.Enqueue(fillsString.TrimEnd("|".ToCharArray()));
             }
 
             // Legends

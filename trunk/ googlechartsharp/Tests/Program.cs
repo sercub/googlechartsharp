@@ -90,10 +90,21 @@ namespace Tests
 
                 tw.WriteLine("<br />");
 
+                // Test single data set area fill
                 fdata = new float[] { 10, 30, 75, 40, 15 };
                 chart = new LineChart(150, 150);
                 chart.SetData(fdata);
                 chart.AddFillArea(new FillArea("224499", 0));
+                tw.WriteLine(getImageTag(chart.GetUrl()));
+
+                // Test linear gradients
+                fdata = new float[] { 10, 30, 75, 40, 15 };
+                chart = new LineChart(150,150);
+                chart.SetData(fdata);
+                LinearGradient linearGradient = new LinearGradient(ChartFillTarget.ChartArea, 0);
+                linearGradient.AddColorOffsetPair("76A4FB", 1);
+                linearGradient.AddColorOffsetPair("FFFFFF", 0);
+                chart.AddLinearGradient(linearGradient);
                 tw.WriteLine(getImageTag(chart.GetUrl()));
                 #endregion
 
