@@ -161,6 +161,12 @@ namespace GoogleChartSharp
         #region Markers
         List<ShapeMarker> shapeMarkers = new List<ShapeMarker>();
         List<RangeMarker> rangeMarkers = new List<RangeMarker>();
+        List<FillArea> fillAreas = new List<FillArea>();
+
+        public void AddFillArea(FillArea fillArea)
+        {
+            this.fillAreas.Add(fillArea);
+        }
 
         public void AddShapeMarker(ShapeMarker shapeMarker)
         {
@@ -170,6 +176,16 @@ namespace GoogleChartSharp
         public void AddRangeMarker(RangeMarker rangeMarker)
         {
             this.rangeMarkers.Add(rangeMarker);
+        }
+
+        private string getFillAreasUrlElement()
+        {
+            string s = string.Empty;
+            foreach (FillArea fillArea in fillAreas)
+            {
+                s += fillArea.GetUrlString() + "|";
+            }
+            return s.TrimEnd("|".ToCharArray());
         }
 
         private string getShapeMarkersUrlElement()
@@ -318,7 +334,11 @@ namespace GoogleChartSharp
             {
                 markersString += getRangeMarkersUrlElement() + "|";
             }
-            if (shapeMarkers.Count > 0 || rangeMarkers.Count > 0)
+            if (fillAreas.Count > 0)
+            {
+                markersString += getFillAreasUrlElement() + "|";
+            }
+            if (shapeMarkers.Count > 0 || rangeMarkers.Count > 0 || fillAreas.Count > 0)
             {
                 urlElements.Enqueue(markersString.TrimEnd("|".ToCharArray()));
             }
