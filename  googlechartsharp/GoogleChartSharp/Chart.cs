@@ -18,6 +18,10 @@ namespace GoogleChartSharp
         List<string> fills = new List<string>();
         List<string> legendStrings = new List<string>();
         List<ChartAxis> axises = new List<ChartAxis>();
+        private float gridXAxisStepSize = -1;
+        private float gridYAxisStepSize = -1;
+        private float gridLengthLineSegment = -1;
+        private float gridLengthBlankSegment = -1;
 
         public Chart(int width, int height)
         {
@@ -104,6 +108,38 @@ namespace GoogleChartSharp
         }
         #endregion
 
+        #region Grid
+
+        public void SetGrid(float xAxisStepSize, float yAxisStepSize)
+        {
+            ChartType chartType = getChartType();
+            if (!(chartType == ChartType.LineChart || chartType == ChartType.ScatterPlot))
+            {
+                throw new InvalidFeatureForChartTypeException();
+            }
+
+            this.gridXAxisStepSize = xAxisStepSize;
+            this.gridYAxisStepSize = yAxisStepSize;
+            this.gridLengthLineSegment = -1;
+            this.gridLengthBlankSegment = -1;
+        }
+
+        public void SetGrid(float xAxisStepSize, float yAxisStepSize, float lengthLineSegment, float lengthBlankSegment)
+        {
+            ChartType chartType = getChartType();
+            if (!(chartType == ChartType.LineChart || chartType == ChartType.ScatterPlot))
+            {
+                throw new InvalidFeatureForChartTypeException();
+            }
+
+            this.gridXAxisStepSize = xAxisStepSize;
+            this.gridYAxisStepSize = yAxisStepSize;
+            this.gridLengthLineSegment = lengthLineSegment;
+            this.gridLengthBlankSegment = lengthBlankSegment;
+        }
+
+        #endregion
+
         #region Labels
         public virtual void SetLegend(string[] strs)
         {
@@ -125,13 +161,13 @@ namespace GoogleChartSharp
             return generateUrlString();
         }
 
-        public abstract string chartType();
-
+        public abstract string urlChartType();
+        public abstract ChartType getChartType();
 
         protected virtual void collectUrlElements()
         {
             urlElements.Clear();
-            urlElements.Enqueue(String.Format("cht={0}", this.chartType()));
+            urlElements.Enqueue(String.Format("cht={0}", this.urlChartType()));
             urlElements.Enqueue(String.Format("chs={0}x{1}", this.width, this.height));
             urlElements.Enqueue(this.data);
             if (title != null)
@@ -211,6 +247,17 @@ namespace GoogleChartSharp
                 urlElements.Enqueue(axisRange);
                 urlElements.Enqueue(axisStyle);
             }
+
+            // Grid
+            if (gridXAxisStepSize != -1 && gridYAxisStepSize != -1)
+            {
+                string s = String.Format("chg={0},{1}", gridXAxisStepSize.ToString(), gridYAxisStepSize.ToString());
+                if (gridLengthLineSegment != -1 && gridLengthBlankSegment != -1)
+                {
+                    s += "," + gridLengthLineSegment.ToString() + "," + gridLengthBlankSegment.ToString();
+                }
+                urlElements.Enqueue(s);
+            }
         }
 
         private string generateUrlString()
@@ -239,5 +286,14 @@ namespace GoogleChartSharp
 
     public class InvalidFeatureForChartTypeException : Exception
     {
+    }
+
+    public enum ChartType
+    {
+        LineChart,
+        ScatterPlot,
+        BarChart,
+        VennDiagram,
+        PieChart
     }
 }

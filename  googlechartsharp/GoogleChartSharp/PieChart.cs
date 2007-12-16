@@ -21,7 +21,7 @@ namespace GoogleChartSharp
             this.pieChartType = pieChartType;
         }
 
-        public override string chartType()
+        public override string urlChartType()
         {
             if (this.pieChartType == PieChartType.ThreeD)
             {
@@ -53,6 +53,11 @@ namespace GoogleChartSharp
         public void SetPieChartLabels(string[] labels)
         {
             this.pieChartLabels = labels;
+        }
+
+        public override ChartType getChartType()
+        {
+            return ChartType.PieChart;
         }
     }
 
