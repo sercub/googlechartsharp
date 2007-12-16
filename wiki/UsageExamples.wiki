@@ -16,7 +16,7 @@ chart.SetData(data);
 string imageUrl = chart.GetUrl();
 }}}
 
-== Adding Axises ==
+== Adding Axes ==
 {{{
 int [] data = new int[] { 40, 30, 20, 10, 0 };
 
