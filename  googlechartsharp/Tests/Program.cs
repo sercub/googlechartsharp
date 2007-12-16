@@ -42,6 +42,8 @@ namespace Tests
                 topAxis.AddLabel(new ChartAxisLabel("three", 100));
                 chart.AddAxis(topAxis);
 
+                chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.Arrow, "FF0000", 0, 1, 5));
+                chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.VerticalLine, "00FF00", 0, 3, 2));
                 tw.WriteLine(getImageTag(chart.GetUrl()));
 
                 // Test XY Line Chart
