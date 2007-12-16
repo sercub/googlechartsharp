@@ -27,6 +27,7 @@ namespace Tests
                 LineChart chart = new LineChart(150, 150);
                 chart.SetTitle("Simple Line Chart", "FF0000");
                 chart.AddSolidFill(ChartFillTarget.Background, "EFEFEF");
+                chart.AddSolidFill(ChartFillTarget.ChartArea, "000000");
                 chart.SetData(data);
 
                 ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
