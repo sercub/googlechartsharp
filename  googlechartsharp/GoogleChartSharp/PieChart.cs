@@ -6,7 +6,8 @@ namespace GoogleChartSharp
 {
     public class PieChart : Chart
     {
-        private bool is3D;
+        private PieChartType pieChartType;
+        private string[] pieChartLabels;
 
         public PieChart(int width, int height)
             : base(width, height)
@@ -14,20 +15,50 @@ namespace GoogleChartSharp
 
         }
 
-        public PieChart(int width, int height, bool is3D)
+        public PieChart(int width, int height, PieChartType pieChartType)
             : base(width, height)
         {
-            this.is3D = is3D;
+            this.pieChartType = pieChartType;
         }
 
         public override string chartType()
         {
-            if (is3D)
+            if (this.pieChartType == PieChartType.ThreeD)
             {
                 return "p3";
             }
 
             return "p";
         }
+
+        protected override void collectUrlElements()
+        {
+            base.collectUrlElements();
+            if (pieChartLabels != null)
+            {
+                string s = "chl=";
+                foreach (string label in pieChartLabels)
+                {
+                    s += label + "|";
+                }
+                this.urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
+            }
+        }
+
+        public override void SetLegend(string[] strs)
+        {
+            throw new InvalidFeatureForChartTypeException();
+        }
+
+        public void SetPieChartLabels(string[] labels)
+        {
+            this.pieChartLabels = labels;
+        }
+    }
+
+    public enum PieChartType
+    {
+        TwoD,
+        ThreeD
     }
 }

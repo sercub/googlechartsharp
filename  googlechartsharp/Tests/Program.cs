@@ -19,9 +19,8 @@ namespace Tests
                 List<int[]> intDataList = new List<int[]>();
                 List<float[]> fDataList = new List<float[]>();
 
-                tw.WriteLine("<h3>Line Charts</h3>");
-
                 # region Line Charts
+                tw.WriteLine("<h3>Line Charts</h3>");
                 // Test Line Chart
                 data = new int[] { 40, 30, 20, 10, 0 };
 
@@ -85,12 +84,15 @@ namespace Tests
                 data = new int[] { 10, 20, 30, 40 };
                 PieChart pieChart = new PieChart(300, 200);
                 pieChart.SetData(data);
+                pieChart.SetPieChartLabels(new string[] { "one", "two", "three", "four" });
                 tw.WriteLine(getImageTag(pieChart.GetUrl()));
 
                 // 3D Pie Chart
                 data = new int[] { 10, 20, 30, 40 };
-                pieChart = new PieChart(300, 200, true);
+                pieChart = new PieChart(400, 200, PieChartType.ThreeD);
                 pieChart.SetData(data);
+                pieChart.SetPieChartLabels(new string[] { "one", "two", "three", "four" });
+                pieChart.SetDatasetColors(new string[] { "0000FF" });
                 tw.WriteLine(getImageTag(pieChart.GetUrl()));
                 #endregion
 

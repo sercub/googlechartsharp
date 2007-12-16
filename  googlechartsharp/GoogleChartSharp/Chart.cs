@@ -4,12 +4,6 @@ using System.Text;
 
 namespace GoogleChartSharp
 {
-    public enum ChartFillTarget
-    {
-        Background,
-        ChartArea
-    }
-
     public abstract class Chart
     {
         private const string API_BASE = "http://chart.apis.google.com/chart?";
@@ -111,7 +105,7 @@ namespace GoogleChartSharp
         #endregion
 
         #region Labels
-        public void SetLegend(string[] strs)
+        public virtual void SetLegend(string[] strs)
         {
             foreach (string s in strs)
             {
@@ -233,5 +227,17 @@ namespace GoogleChartSharp
 
             return url;
         }
+
+        
+    }
+
+    public enum ChartFillTarget
+    {
+        Background,
+        ChartArea
+    }
+
+    public class InvalidFeatureForChartTypeException : Exception
+    {
     }
 }
