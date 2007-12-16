@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GoogleChartSharp
 {
-    public class ChartData
+    class ChartData
     {
         public static string Encode(int[] data)
         {
