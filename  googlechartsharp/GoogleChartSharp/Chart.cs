@@ -214,7 +214,7 @@ namespace GoogleChartSharp
         #endregion
 
         #region Labels
-        List<ChartAxis> axises = new List<ChartAxis>();
+        List<ChartAxis> axes = new List<ChartAxis>();
         List<string> legendStrings = new List<string>();
 
         public virtual void SetLegend(string[] strs)
@@ -227,7 +227,7 @@ namespace GoogleChartSharp
 
         public void AddAxis(ChartAxis axis)
         {
-            axises.Add(axis);
+            axes.Add(axis);
         }
         #endregion
 
@@ -302,7 +302,7 @@ namespace GoogleChartSharp
                 }
                 urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
-            if (axises.Count > 0)
+            if (axes.Count > 0)
             {
                 string axisTypes = "chxt=";
                 string axisLabels = "chxl=";
@@ -311,7 +311,7 @@ namespace GoogleChartSharp
                 string axisStyle = "chxs=";
 
                 int axisIndex = 0;
-                foreach (ChartAxis axis in axises)
+                foreach (ChartAxis axis in axes)
                 {
                     axisTypes += axis.urlAxisType() + ",";
                     axisLabels += axisIndex.ToString() + ":" + axis.urlLabels();
