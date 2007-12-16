@@ -18,10 +18,7 @@ namespace GoogleChartSharp
         List<string> fills = new List<string>();
         List<string> legendStrings = new List<string>();
         List<ChartAxis> axises = new List<ChartAxis>();
-        private float gridXAxisStepSize = -1;
-        private float gridYAxisStepSize = -1;
-        private float gridLengthLineSegment = -1;
-        private float gridLengthBlankSegment = -1;
+        List<ShapeMarker> shapeMarkers = new List<ShapeMarker>();
 
         public Chart(int width, int height)
         {
@@ -109,6 +106,11 @@ namespace GoogleChartSharp
         #endregion
 
         #region Grid
+        bool gridSet = false;
+        private float gridXAxisStepSize = -1;
+        private float gridYAxisStepSize = -1;
+        private float gridLengthLineSegment = -1;
+        private float gridLengthBlankSegment = -1;
 
         public void SetGrid(float xAxisStepSize, float yAxisStepSize)
         {
@@ -122,6 +124,7 @@ namespace GoogleChartSharp
             this.gridYAxisStepSize = yAxisStepSize;
             this.gridLengthLineSegment = -1;
             this.gridLengthBlankSegment = -1;
+            this.gridSet = true;
         }
 
         public void SetGrid(float xAxisStepSize, float yAxisStepSize, float lengthLineSegment, float lengthBlankSegment)
@@ -136,6 +139,40 @@ namespace GoogleChartSharp
             this.gridYAxisStepSize = yAxisStepSize;
             this.gridLengthLineSegment = lengthLineSegment;
             this.gridLengthBlankSegment = lengthBlankSegment;
+            this.gridSet = true;
+        }
+
+        private string getGridUrlElement()
+        {
+            if (gridXAxisStepSize != -1 && gridYAxisStepSize != -1)
+            {
+                string s = String.Format("chg={0},{1}", gridXAxisStepSize.ToString(), gridYAxisStepSize.ToString());
+                if (gridLengthLineSegment != -1 && gridLengthBlankSegment != -1)
+                {
+                    s += "," + gridLengthLineSegment.ToString() + "," + gridLengthBlankSegment.ToString();
+                }
+                return s;
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region Markers
+
+        public void AddShapeMarker(ShapeMarker shapeMarker)
+        {
+            this.shapeMarkers.Add(shapeMarker);
+        }
+
+        private string getShapeMarkersUrlElement()
+        {
+            string s = string.Empty;
+            foreach (ShapeMarker shapeMarker in shapeMarkers)
+            {
+                s += shapeMarker.GetUrlString() + "|";
+            }
+            return s.TrimEnd("|".ToCharArray());
         }
 
         #endregion
@@ -249,13 +286,16 @@ namespace GoogleChartSharp
             }
 
             // Grid
-            if (gridXAxisStepSize != -1 && gridYAxisStepSize != -1)
+            if (gridSet)
             {
-                string s = String.Format("chg={0},{1}", gridXAxisStepSize.ToString(), gridYAxisStepSize.ToString());
-                if (gridLengthLineSegment != -1 && gridLengthBlankSegment != -1)
-                {
-                    s += "," + gridLengthLineSegment.ToString() + "," + gridLengthBlankSegment.ToString();
-                }
+                urlElements.Enqueue(getGridUrlElement());
+            }
+            
+            // Markers
+            if (shapeMarkers.Count > 0)
+            {
+                string s = "chm=";
+                s += getShapeMarkersUrlElement();
                 urlElements.Enqueue(s);
             }
         }
