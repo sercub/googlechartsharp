@@ -9,17 +9,8 @@ namespace GoogleChartSharp
         private const string API_BASE = "http://chart.apis.google.com/chart?";
         protected Queue<string> urlElements = new Queue<string>();
 
-        private int width;
-        private int height;
-        private string data;
-        private string title;
-        private string titleColor;
-        private string[] datasetColors;
-        List<string> fills = new List<string>();
-        List<string> legendStrings = new List<string>();
         List<ChartAxis> axises = new List<ChartAxis>();
         
-
         public Chart(int width, int height)
         {
             this.width = width;
@@ -27,6 +18,9 @@ namespace GoogleChartSharp
         }
 
         #region Chart Dimensions
+        private int width;
+        private int height;
+
         public void SetWidth(int width)
         {
             this.width = width;
@@ -39,6 +33,8 @@ namespace GoogleChartSharp
         #endregion
 
         #region Chart Data
+        private string data;
+
         public void SetData(int[] data)
         {
             this.data = ChartData.Encode(data);
@@ -61,6 +57,8 @@ namespace GoogleChartSharp
         #endregion
 
         # region Chart Title
+        private string title;
+        private string titleColor;
         public void SetTitle(string title)
         {
             string urlTitle = title.Replace(" ", "+");
@@ -82,26 +80,21 @@ namespace GoogleChartSharp
         #endregion
 
         #region Colors
+        private string[] datasetColors;
+
         public void SetDatasetColors(string[] datasetColors)
         {
             this.datasetColors = datasetColors;
         }
 
-        public void AddSolidFill(ChartFillTarget target, string color)
-        {
-            string fillString = string.Empty;
-            switch (target)
-            {
-                case ChartFillTarget.Background:
-                    fillString += "bg,";
-                    break;
-                case ChartFillTarget.ChartArea:
-                    fillString += "c,";
-                    break;
-            }
+        #endregion
 
-            fillString += "s," + color;
-            fills.Add(fillString);
+        # region Fills
+        List<SolidFill> solidFills = new List<SolidFill>();
+
+        public void AddSolidFill(SolidFill solidFill)
+        {
+            solidFills.Add(solidFill);
         }
         #endregion
 
@@ -211,6 +204,8 @@ namespace GoogleChartSharp
         #endregion
 
         #region Labels
+        List<string> legendStrings = new List<string>();
+
         public virtual void SetLegend(string[] strs)
         {
             foreach (string s in strs)
@@ -257,15 +252,19 @@ namespace GoogleChartSharp
                 }
                 urlElements.Enqueue(s.TrimEnd(",".ToCharArray()));
             }
-            if (fills.Count > 0)
+
+            // Solid Fills
+            if (solidFills.Count > 0)
             {
                 string s = "chf=";
-                foreach (string fillString in fills)
+                foreach (SolidFill solidFill in solidFills)
                 {
-                    s += fillString + "|";
+                    s += solidFill.GetUrlString() + "|";
                 }
                 urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
+
+            // Legends
             if (legendStrings.Count > 0)
             {
                 string s = "chdl=";
@@ -360,12 +359,6 @@ namespace GoogleChartSharp
         }
 
         
-    }
-
-    public enum ChartFillTarget
-    {
-        Background,
-        ChartArea
     }
 
     public class InvalidFeatureForChartTypeException : Exception
