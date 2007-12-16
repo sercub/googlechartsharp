@@ -14,11 +14,6 @@ namespace Tests
         {
             using (TextWriter tw = new StreamWriter(("test.html")))
             {
-                int[] data;
-                float[] fdata;
-                List<int[]> intDataList = new List<int[]>();
-                List<float[]> fDataList = new List<float[]>();
-
                 # region Line Charts
                 tw.WriteLine("<h3>Line Charts</h3>");
                 tw.WriteLine(getImageTag(LineChartTests.singleDatasetPerLine()));
@@ -43,49 +38,35 @@ namespace Tests
 
                 #endregion
 
+                #region Grids
+                tw.WriteLine("<h3>Grids</h3>");
+                tw.WriteLine(getImageTag(GridTests.stepSizeTest()));
+                tw.WriteLine(getImageTag(GridTests.allParamsTest()));
+                tw.WriteLine(getImageTag(GridTests.solidGridTest()));
+                #endregion
+
                 #region Bar Charts
                 tw.WriteLine("<h3>Bar Charts</h3>");
                 tw.WriteLine(getImageTag(BarChartTests.horizontalStackedTest()));
                 tw.WriteLine(getImageTag(BarChartTests.verticalStackedTest()));
+                tw.WriteLine(getImageTag(BarChartTests.horizontalGroupedTest()));
+                tw.WriteLine(getImageTag(BarChartTests.verticalGroupedTest()));
                 #endregion
 
                 #region Pie Charts
-                // 2D Pie Chart
                 tw.WriteLine("<h3>Pie Charts</h3>");
-                data = new int[] { 10, 20, 30, 40 };
-                PieChart pieChart = new PieChart(300, 200);
-                pieChart.SetData(data);
-                pieChart.SetPieChartLabels(new string[] { "one", "two", "three", "four" });
-                tw.WriteLine(getImageTag(pieChart.GetUrl()));
-
-                // 3D Pie Chart
-                data = new int[] { 10, 20, 30, 40 };
-                pieChart = new PieChart(400, 200, PieChartType.ThreeD);
-                pieChart.SetData(data);
-                pieChart.SetPieChartLabels(new string[] { "one", "two", "three", "four" });
-                pieChart.SetDatasetColors(new string[] { "0000FF" });
-                tw.WriteLine(getImageTag(pieChart.GetUrl()));
+                tw.WriteLine(getImageTag(PieChartTests.TwoDTest()));
+                tw.WriteLine(getImageTag(PieChartTests.ThreeDTest()));
                 #endregion
 
                 # region Venn Diagrams
                 tw.WriteLine("<h3>Venn Diagrams</h3>");
-                VennDiagram venn = new VennDiagram(150, 150);
-                data = new int[] { 100, 80, 60, 30, 30, 30, 10 };
-                venn.SetData(data);
-                tw.WriteLine(getImageTag(venn.GetUrl()));
+                tw.WriteLine(getImageTag(VennDiagramTests.VennDiagramTest()));
                 #endregion
 
                 # region Scatter Plots
                 tw.WriteLine("<h3>Scatter Plots</h3>");
-                intDataList.Clear();
-                ScatterPlot scatter = new ScatterPlot(150, 150);
-                data = new int[] { 10, 20, 30, 40, 50 };
-                intDataList.Add(data);
-                data = new int[] { 10, 20, 30, 40, 50 };
-                intDataList.Add(data);
-                scatter.SetData(intDataList);
-                scatter.SetGrid(20, 50);
-                tw.WriteLine(getImageTag(scatter.GetUrl()));
+                tw.WriteLine(getImageTag(ScatterPlotTests.scatterPlotTest()));
                 #endregion
             }
 
