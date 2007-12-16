@@ -1,3 +1,6 @@
+== Dataset Limitations ==
+Please read the [http://code.google.com/apis/chart/#chart_data Developers Guide] section about chart data.
+
 == Single Dataset ==
 A single dataset can be contained in either an int[] or a float[]. You set a chart's data set using the Chart.SetData() method.
 
