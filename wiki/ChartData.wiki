@@ -26,7 +26,8 @@ Create a single float dataset
 float[] floatData = new float[] {0.0, 0.5, 1.0, 1.5, 2.0};
 
 /* 
-Create a new line chart with width 150 and height 150.
+Create a new line chart with width 150 and height 150. The default line chart
+uses one data set per line, evenly spacing the data points out along the x axis.
 */
 LineChart lineChart = new LineChart(150, 150);
 
