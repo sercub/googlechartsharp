@@ -9,7 +9,7 @@ A dataset of type int[] with values less than or equal to 4095 will be encoded u
 A dataset of type float[] with values less than or equal to 100 will be encoded using text encoding.
 
 == Single Dataset ==
-A single dataset can be contained in either an int[] or a float[]. You set a chart's data set using the Chart.SetData() method.
+A single dataset can be contained in either an int[] or a float[]. You set a chart's data set using the `Chart.SetData()` method.
 
 For example:
 {{{
