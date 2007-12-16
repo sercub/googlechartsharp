@@ -4,11 +4,19 @@ using System.Text;
 
 namespace GoogleChartSharp
 {
+    /// <summary>
+    /// Base type for all charts.
+    /// </summary>
     public abstract class Chart
     {
         private const string API_BASE = "http://chart.apis.google.com/chart?";
-        protected Queue<string> urlElements = new Queue<string>();
+        internal Queue<string> urlElements = new Queue<string>();
 
+        /// <summary>
+        /// Create a chart
+        /// </summary>
+        /// <param name="width">width in pixels</param>
+        /// <param name="height">height in pixels</param>
         public Chart(int width, int height)
         {
             this.width = width;
@@ -19,35 +27,59 @@ namespace GoogleChartSharp
         private int width;
         private int height;
 
-        public void SetWidth(int width)
+        /// <summary>
+        /// Chart width in pixels.
+        /// </summary>
+        public int Width
         {
-            this.width = width;
+            get { return width; }
+            set { width = value; }
         }
 
-        public void SetHeight(int height)
+        /// <summary>
+        /// Chart height in pixels.
+        /// </summary>
+        public int Height
         {
-            this.height = height;
+            get { return height; }
+            set { height = value; }
         }
         #endregion
 
         #region Chart Data
         private string data;
 
+        /// <summary>
+        /// Set chart to use single integer dataset
+        /// </summary>
+        /// <param name="data"></param>
         public void SetData(int[] data)
         {
             this.data = ChartData.Encode(data);
         }
 
+        /// <summary>
+        /// Set chart to use integer dataset collection
+        /// </summary>
+        /// <param name="data"></param>
         public void SetData(ICollection<int[]> data)
         {
             this.data = ChartData.Encode(data);
         }
 
+        /// <summary>
+        /// Set chart to use single float dataset
+        /// </summary>
+        /// <param name="data"></param>
         public void SetData(float[] data)
         {
             this.data = ChartData.Encode(data);
         }
 
+        /// <summary>
+        /// Set chart to use float dataset collection
+        /// </summary>
+        /// <param name="data"></param>
         public void SetData(ICollection<float[]> data)
         {
             this.data = ChartData.Encode(data);
@@ -57,6 +89,11 @@ namespace GoogleChartSharp
         # region Chart Title
         private string title;
         private string titleColor;
+
+        /// <summary>
+        /// Set chart title using default color and font size
+        /// </summary>
+        /// <param name="title">chart title text</param>
         public void SetTitle(string title)
         {
             string urlTitle = title.Replace(" ", "+");
@@ -64,22 +101,39 @@ namespace GoogleChartSharp
             this.title = urlTitle;
         }
 
-        public void SetTitle(string title, string hexColor)
+        /// <summary>
+        /// Set chart title using default font size
+        /// </summary>
+        /// <param name="title">chart title text</param>
+        /// <param name="color">chart title color an RRGGBB format hexadecimal number</param>
+        public void SetTitle(string title, string color)
         {
             SetTitle(title);
-            this.titleColor = hexColor;
+            this.titleColor = color;
         }
 
-        public void SetTitle(string title, string hexColor, int fontSize)
+        /// <summary>
+        /// Set chart title
+        /// </summary>
+        /// <param name="title">chart title text</param>
+        /// <param name="color">chart title color an RRGGBB format hexadecimal number</param>
+        /// <param name="fontSize">chart title font size in pixels</param>
+        public void SetTitle(string title, string color, int fontSize)
         {
             SetTitle(title);
-            this.titleColor = hexColor + "," + fontSize;
+            this.titleColor = color + "," + fontSize;
         }
         #endregion
 
         #region Colors
         private string[] datasetColors;
 
+        /// <summary>
+        /// Set the color for each dataset, match colors to datasets by
+        /// specifying them in the same order the datasets were added to the
+        /// chart.
+        /// </summary>
+        /// <param name="datasetColors">an array of RRGGBB format hexadecimal numbers</param>
         public void SetDatasetColors(string[] datasetColors)
         {
             this.datasetColors = datasetColors;
@@ -92,16 +146,28 @@ namespace GoogleChartSharp
         List<LinearGradientFill> linearGradientFills = new List<LinearGradientFill>();
         List<LinearStripesFill> linearStripesFills = new List<LinearStripesFill>();
 
+        /// <summary>
+        /// Add a solid fill to this chart.
+        /// </summary>
+        /// <param name="solidFill"></param>
         public void AddSolidFill(SolidFill solidFill)
         {
             solidFills.Add(solidFill);
         }
 
+        /// <summary>
+        /// Add a linear gradient fill to this chart.
+        /// </summary>
+        /// <param name="linearGradientFill"></param>
         public void AddLinearGradientFill(LinearGradientFill linearGradientFill)
         {
             linearGradientFills.Add(linearGradientFill);
         }
 
+        /// <summary>
+        /// Add a linear stripes fill to this chart.
+        /// </summary>
+        /// <param name="linearStripesFill"></param>
         public void AddLinearStripesFill(LinearStripesFill linearStripesFill)
         {
             linearStripesFills.Add(linearStripesFill);
@@ -115,6 +181,11 @@ namespace GoogleChartSharp
         private float gridLengthLineSegment = -1;
         private float gridLengthBlankSegment = -1;
 
+        /// <summary>
+        /// Add a grid to the chart using default line segment and blank line segment length.
+        /// </summary>
+        /// <param name="xAxisStepSize">Space between x-axis grid lines in relation to axis range.</param>
+        /// <param name="yAxisStepSize">Space between y-axis grid lines in relation to axis range.</param>
         public void SetGrid(float xAxisStepSize, float yAxisStepSize)
         {
             ChartType chartType = getChartType();
@@ -130,6 +201,13 @@ namespace GoogleChartSharp
             this.gridSet = true;
         }
 
+        /// <summary>
+        /// Add a grid to the chart.
+        /// </summary>
+        /// <param name="xAxisStepSize">Space between x-axis grid lines in relation to axis range.</param>
+        /// <param name="yAxisStepSize">Space between y-axis grid lines in relation to axis range.</param>
+        /// <param name="lengthLineSegment">Length of each line segment in a grid line</param>
+        /// <param name="lengthBlankSegment">Length of each blank segment in a grid line</param>
         public void SetGrid(float xAxisStepSize, float yAxisStepSize, float lengthLineSegment, float lengthBlankSegment)
         {
             ChartType chartType = getChartType();
@@ -166,16 +244,28 @@ namespace GoogleChartSharp
         List<RangeMarker> rangeMarkers = new List<RangeMarker>();
         List<FillArea> fillAreas = new List<FillArea>();
 
+        /// <summary>
+        /// Add a fill area to the chart. Fill areas are fills between / under lines.
+        /// </summary>
+        /// <param name="fillArea"></param>
         public void AddFillArea(FillArea fillArea)
         {
             this.fillAreas.Add(fillArea);
         }
 
+        /// <summary>
+        /// Add a shape marker to the chart. Shape markers are used to call attention to a data point on the chart.
+        /// </summary>
+        /// <param name="shapeMarker"></param>
         public void AddShapeMarker(ShapeMarker shapeMarker)
         {
             this.shapeMarkers.Add(shapeMarker);
         }
 
+        /// <summary>
+        /// Add a range marker to the chart. Range markers are colored bands on the chart.
+        /// </summary>
+        /// <param name="rangeMarker"></param>
         public void AddRangeMarker(RangeMarker rangeMarker)
         {
             this.rangeMarkers.Add(rangeMarker);
@@ -217,6 +307,10 @@ namespace GoogleChartSharp
         List<ChartAxis> axes = new List<ChartAxis>();
         List<string> legendStrings = new List<string>();
 
+        /// <summary>
+        /// Set chart legend
+        /// </summary>
+        /// <param name="strs">legend labels</param>
         public virtual void SetLegend(string[] strs)
         {
             foreach (string s in strs)
@@ -225,27 +319,44 @@ namespace GoogleChartSharp
             }
         }
 
+        /// <summary>
+        /// Add an axis to the chart
+        /// </summary>
+        /// <param name="axis"></param>
         public void AddAxis(ChartAxis axis)
         {
             axes.Add(axis);
         }
         #endregion
 
+        /// <summary>
+        /// Return the chart api url for this chart
+        /// </summary>
+        /// <returns></returns>
         public string GetUrl()
         {
             collectUrlElements();
             return generateUrlString();
         }
 
+        /// <summary>
+        /// Returns the api chart identifier for the chart
+        /// </summary>
+        /// <returns></returns>
         protected abstract string urlChartType();
         protected abstract ChartType getChartType();
 
+        /// <summary>
+        /// Collect all the elements that will be used in the chart url
+        /// </summary>
         protected virtual void collectUrlElements()
         {
             urlElements.Clear();
             urlElements.Enqueue(String.Format("cht={0}", this.urlChartType()));
             urlElements.Enqueue(String.Format("chs={0}x{1}", this.width, this.height));
             urlElements.Enqueue(this.data);
+
+            // chart title
             if (title != null)
             {
                 urlElements.Enqueue(String.Format("chtt={0}", this.title));
@@ -254,6 +365,8 @@ namespace GoogleChartSharp
             {
                 urlElements.Enqueue(String.Format("chts={0}", this.titleColor));
             }
+
+            // dataset colors
             if (datasetColors != null)
             {
                 string s = "chco=";
@@ -302,6 +415,8 @@ namespace GoogleChartSharp
                 }
                 urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
+
+            // Axes
             if (axes.Count > 0)
             {
                 string axisTypes = "chxt=";
@@ -389,10 +504,16 @@ namespace GoogleChartSharp
         
     }
 
+    /// <summary>
+    /// Thrown if the current chart type does not support the requested feature
+    /// </summary>
     public class InvalidFeatureForChartTypeException : Exception
     {
     }
 
+    /// <summary>
+    /// Chart types, used internally
+    /// </summary>
     public enum ChartType
     {
         LineChart,
