@@ -49,7 +49,7 @@ namespace GoogleChartSharp
             this.colorOffsetPairs.Add(new ColorOffsetPair(color, offset));
         }
 
-        private string getTypeUrlChar()
+        internal string getTypeUrlChar()
         {
             switch (fillTarget)
             {
@@ -61,7 +61,7 @@ namespace GoogleChartSharp
             return null;
         }
 
-        public String GetUrlString()
+        internal String GetUrlString()
         {
             string s = string.Empty;
             s += getTypeUrlChar() + ",";
