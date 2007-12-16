@@ -21,119 +21,32 @@ namespace Tests
 
                 # region Line Charts
                 tw.WriteLine("<h3>Line Charts</h3>");
-                // Test Line Chart
-                data = new int[] { 40, 30, 20, 10, 0 };
+                tw.WriteLine(getImageTag(LineChartTests.singleDatasetPerLine()));
+                tw.WriteLine(getImageTag(LineChartTests.multiDatasetPerLine()));
+                tw.WriteLine(getImageTag(LineChartTests.lineColorAndLegendTest()));
+                #endregion
 
-                LineChart chart = new LineChart(150, 150);
-                chart.SetTitle("Simple Line Chart", "FF0000");
-                chart.AddSolidFill(new SolidFill(ChartFillTarget.Background, "EFEFEF"));
-                chart.AddSolidFill(new SolidFill(ChartFillTarget.ChartArea, "000000"));
-                chart.SetData(data);
-
-                ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
-                bottomAxis.SetRange(0, 500);
-                bottomAxis.Color = "00FF00";
-                bottomAxis.FontSize = 14;
-                chart.AddAxis(bottomAxis);
-
-                ChartAxis topAxis = new ChartAxis(ChartAxisType.Top);
-                topAxis.AddLabel(new ChartAxisLabel("one", 0));
-                topAxis.AddLabel(new ChartAxisLabel("two", 75));
-                topAxis.AddLabel(new ChartAxisLabel("three", 100));
-                chart.AddAxis(topAxis);
-
-                chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.Arrow, "FF0000", 0, 1, 5));
-                chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.VerticalLine, "00FF00", 0, 3, 2));
-                tw.WriteLine(getImageTag(chart.GetUrl()));
-
-                // Test XY Line Chart
-                fDataList.Clear();
-                fdata = new float[] { 0, 30, 60, 70, 90, 95, 100 };
-                fDataList.Add(fdata);
-                fdata = new float[] { 20, 30, 40, 50, 60, 70, 80 };
-                fDataList.Add(fdata);
-                fdata = new float[] { 10, 30, 40, 45, 52 };
-                fDataList.Add(fdata);
-                fdata = new float[] { 100, 90, 40, 20, 10 };
-                fDataList.Add(fdata);
-                LineChart xyLineChart = new LineChart(300, 150, LineChartType.MultiDataSet);
-                xyLineChart.SetData(fDataList);
-                xyLineChart.SetDatasetColors(new string[] { "FF0000", "00FF00" });
-                xyLineChart.AddLineStyle(new LineStyle(3, 6, 3));
-                xyLineChart.SetLegend(new string[] {"First", "Second"});
-                xyLineChart.SetGrid(20, 50, 1, 0);
-                xyLineChart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, "E5ECF9", 0.2, 0.7));
-                tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
-
-                // Test area fills
-                fDataList.Clear();
-                fdata = new float[] { 10, 30, 60, 90, 100 };
-                fDataList.Add(fdata);
-                fdata = new float[] { 15, 45, 5, 30, 10 };
-                fDataList.Add(fdata);
-                fdata = new float[] { 10, 30, 60, 90, 100 };
-                fDataList.Add(fdata);
-                fdata = new float[] { 35, 65, 25, 50, 30 };
-                fDataList.Add(fdata);
-                fdata = new float[] { 10, 30, 60, 90, 100 };
-                fDataList.Add(fdata);
-                fdata = new float[] { 55, 85, 45, 70, 50 };
-                fDataList.Add(fdata);
-
-                xyLineChart = new LineChart(300, 150, LineChartType.MultiDataSet);
-                xyLineChart.SetData(fDataList);
-
-                xyLineChart.AddFillArea(new FillArea("FF0000", 0, 1));
-                xyLineChart.AddFillArea(new FillArea("224499", 1, 2));
-
-                tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
-
+                #region Fills
+                tw.WriteLine("<h3>Fills</h3>");
+                tw.WriteLine(getImageTag(FillsTests.multiLineAreaFillsTest()));
+                tw.WriteLine(getImageTag(FillsTests.singleLineAreaFillTest()));
+                tw.WriteLine(getImageTag(FillsTests.linearGradientFillTest()));
                 tw.WriteLine("<br />");
+                tw.WriteLine(getImageTag(FillsTests.linearStripesTest()));
+                tw.WriteLine(getImageTag(FillsTests.solidFillTest()));
+                #endregion
 
-                // Test single data set area fill
-                fdata = new float[] { 10, 30, 75, 40, 15 };
-                chart = new LineChart(150, 150);
-                chart.SetData(fdata);
-                chart.AddFillArea(new FillArea("224499", 0));
-                tw.WriteLine(getImageTag(chart.GetUrl()));
+                #region Markers
+                tw.WriteLine("<h3>Markers</h3>");
+                tw.WriteLine(getImageTag(MarkersTests.rangeMarkersTest()));
+                tw.WriteLine(getImageTag(MarkersTests.shapeMarkersTest()));
 
-                // Test linear gradient
-                fdata = new float[] { 10, 30, 75, 40, 15 };
-                chart = new LineChart(150,150);
-                chart.SetData(fdata);
-                LinearGradientFill linearGradient = new LinearGradientFill(ChartFillTarget.ChartArea, 0);
-                linearGradient.AddColorOffsetPair("76A4FB", 1);
-                linearGradient.AddColorOffsetPair("FFFFFF", 0);
-                chart.AddLinearGradientFill(linearGradient);
-                tw.WriteLine(getImageTag(chart.GetUrl()));
-
-                // Test linear stripes
-                fdata = new float[] { 10, 30, 75, 40, 15 };
-                chart = new LineChart(150, 150);
-                chart.SetData(fdata);
-                LinearStripesFill linearStripesFill = new LinearStripesFill(ChartFillTarget.ChartArea, 0);
-                linearStripesFill.AddColorWidthPair("CCCCCC", 0.2);
-                linearStripesFill.AddColorWidthPair("FFFFFF", 0.2);
-                chart.AddLinearStripesFill(linearStripesFill);
-                tw.WriteLine(getImageTag(chart.GetUrl()));
                 #endregion
 
                 #region Bar Charts
-                // Horizontal Stacked Bar Chart
                 tw.WriteLine("<h3>Bar Charts</h3>");
-                data = new int[] { 0, 10, 20, 30, -1, 40 };
-                BarChart barChart = new BarChart(150, 150, BarChartOrientation.Horizontal, BarChartStyle.Stacked);
-                barChart.SetData(data);
-                ChartAxis leftAxis = new ChartAxis(ChartAxisType.Left, new string[] { "a", "b", "c", "d", "e", "f" });
-                barChart.AddAxis(leftAxis);
-                tw.WriteLine(getImageTag(barChart.GetUrl()));
-
-                // Vertical Stacked Bar Chart
-                data = new int[] { 0, 10, 20, 30, -1, 40 };
-                barChart = new BarChart(200, 150, BarChartOrientation.Vertical, BarChartStyle.Stacked);
-                barChart.SetBarWidth(10);
-                barChart.SetData(data);
-                tw.WriteLine(getImageTag(barChart.GetUrl()));
+                tw.WriteLine(getImageTag(BarChartTests.horizontalStackedTest()));
+                tw.WriteLine(getImageTag(BarChartTests.verticalStackedTest()));
                 #endregion
 
                 #region Pie Charts
