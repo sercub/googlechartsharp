@@ -67,7 +67,7 @@ namespace GoogleChartSharp
             this.startLineIndex = lineIndex;
         }
 
-        public string GetUrlString()
+        internal string GetUrlString()
         {
             string s = string.Empty;
 

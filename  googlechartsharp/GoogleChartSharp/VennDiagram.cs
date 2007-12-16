@@ -11,12 +11,12 @@ namespace GoogleChartSharp
         {
         }
 
-        public override string urlChartType()
+        protected override string urlChartType()
         {
             return "v";
         }
 
-        public override ChartType getChartType()
+        protected override ChartType getChartType()
         {
             return ChartType.VennDiagram;
         }
