@@ -13,14 +13,14 @@ namespace GoogleChartSharp
             set { type = value; }
         }
 
-        string hexColor;
+        string color;
         /// <summary>
         /// an RRGGBB format hexadecimal number.
         /// </summary>
         public string HexColor
         {
-            get { return hexColor; }
-            set { hexColor = value; }
+            get { return color; }
+            set { color = value; }
         }
 
         int datasetIndex;
@@ -61,10 +61,10 @@ namespace GoogleChartSharp
         /// <param name="datasetIndex">the index of the line on which to draw the marker. This is 0 for the first data set, 1 for the second and so on</param>
         /// <param name="dataPoint">a floating point value that specifies on which data point the marker will be drawn. This is 1 for the first data set, 2 for the second and so on. Specify a fraction to interpolate a marker between two points.</param>
         /// <param name="size">the size of the marker in pixels</param>
-        public ShapeMarker(ShapeMarkerType markerType, string hexColor, int datasetIndex, float dataPoint, int size)
+        public ShapeMarker(ShapeMarkerType markerType, string color, int datasetIndex, float dataPoint, int size)
         {
             this.type = markerType;
-            this.hexColor = hexColor;
+            this.color = color;
             this.datasetIndex = datasetIndex;
             this.dataPoint = dataPoint;
             this.size = size;
@@ -100,7 +100,7 @@ namespace GoogleChartSharp
         {
             string s = string.Empty;
             s += GetTypeUrlChar() + ",";
-            s += hexColor + ",";
+            s += color + ",";
             s += datasetIndex + ",";
             s += dataPoint + ",";
             s += size.ToString();

@@ -44,7 +44,7 @@ namespace GoogleChartSharp
         /// </summary>
         /// <param name="color">RRGGBB format hexadecimal number</param>
         /// <param name="offset">specify at what point the color is pure where: 0 specifies the right-most chart position and 1 the left-most</param>
-        public void AddColorOffsetPair(string color, int offset)
+        public void AddColorOffsetPair(string color, double offset)
         {
             this.colorOffsetPairs.Add(new ColorOffsetPair(color, offset));
         }
@@ -88,14 +88,14 @@ namespace GoogleChartSharp
             /// specify at what point the color is pure where: 0 specifies the right-most 
             /// chart position and 1 the left-most.
             /// </summary>
-            public int Offset;
+            public double Offset;
 
             /// <summary>
             /// 
             /// </summary>
             /// <param name="color">RRGGBB format hexadecimal number</param>
             /// <param name="offset">specify at what point the color is pure where: 0 specifies the right-most chart position and 1 the left-most</param>
-            public ColorOffsetPair(string color, int offset)
+            public ColorOffsetPair(string color, double offset)
             {
                 this.Color = color;
                 this.Offset = offset;
