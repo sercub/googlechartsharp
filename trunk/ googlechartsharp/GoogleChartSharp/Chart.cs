@@ -237,8 +237,8 @@ namespace GoogleChartSharp
             return generateUrlString();
         }
 
-        public abstract string urlChartType();
-        public abstract ChartType getChartType();
+        protected abstract string urlChartType();
+        protected abstract ChartType getChartType();
 
         protected virtual void collectUrlElements()
         {

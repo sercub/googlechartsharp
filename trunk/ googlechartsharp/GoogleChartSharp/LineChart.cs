@@ -27,7 +27,7 @@ namespace GoogleChartSharp
             this.lineChartType = lineChartType;
         }
 
-        public override string urlChartType()
+        protected override string urlChartType()
         {
             if (this.lineChartType == LineChartType.MultiDataSet)
             {
@@ -57,7 +57,7 @@ namespace GoogleChartSharp
             }
         }
 
-        public override ChartType getChartType()
+        protected override ChartType getChartType()
         {
             return ChartType.LineChart;
         }

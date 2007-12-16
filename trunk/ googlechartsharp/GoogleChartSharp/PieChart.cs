@@ -21,7 +21,7 @@ namespace GoogleChartSharp
             this.pieChartType = pieChartType;
         }
 
-        public override string urlChartType()
+        protected override string urlChartType()
         {
             if (this.pieChartType == PieChartType.ThreeD)
             {
@@ -45,17 +45,25 @@ namespace GoogleChartSharp
             }
         }
 
+        /// <summary>
+        /// Legend is not supported on Pie Charts
+        /// </summary>
+        /// <param name="strs"></param>
         public override void SetLegend(string[] strs)
         {
             throw new InvalidFeatureForChartTypeException();
         }
 
+        /// <summary>
+        /// Set labels for the Pie Chart slices
+        /// </summary>
+        /// <param name="labels">strings that will be used as label text</param>
         public void SetPieChartLabels(string[] labels)
         {
             this.pieChartLabels = labels;
         }
 
-        public override ChartType getChartType()
+        protected override ChartType getChartType()
         {
             return ChartType.PieChart;
         }

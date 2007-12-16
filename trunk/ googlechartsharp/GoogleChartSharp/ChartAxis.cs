@@ -121,7 +121,7 @@ namespace GoogleChartSharp
             axisLabels.Add(axisLabel);
         }
 
-        public string UrlAxisStyle()
+        internal string UrlAxisStyle()
         {
             if (color == null)
             {
@@ -152,7 +152,7 @@ namespace GoogleChartSharp
             return result.TrimEnd(",".ToCharArray());
         }
 
-        public string urlAxisType()
+        internal string urlAxisType()
         {
             switch (axisType)
             {
@@ -172,7 +172,7 @@ namespace GoogleChartSharp
             return null;
         }
 
-        public string urlLabels()
+        internal string urlLabels()
         {
             string result = "|";
             foreach (ChartAxisLabel label in axisLabels)
@@ -182,7 +182,7 @@ namespace GoogleChartSharp
             return result;
         }
 
-        public string urlLabelPositions()
+        internal string urlLabelPositions()
         {
             string result = string.Empty;
             foreach (ChartAxisLabel axisLabel in axisLabels)
@@ -196,7 +196,7 @@ namespace GoogleChartSharp
             return result.TrimEnd(",".ToCharArray());
         }
 
-        public string urlRange()
+        internal string urlRange()
         {
             if (rangeSet)
             {
