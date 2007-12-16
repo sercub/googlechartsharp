@@ -64,6 +64,37 @@ namespace Tests
                 xyLineChart.SetGrid(20, 50, 1, 0);
                 xyLineChart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, "E5ECF9", 0.2, 0.7));
                 tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
+
+                // Test area fills
+                fDataList.Clear();
+                fdata = new float[] { 10, 30, 60, 90, 100 };
+                fDataList.Add(fdata);
+                fdata = new float[] { 15, 45, 5, 30, 10 };
+                fDataList.Add(fdata);
+                fdata = new float[] { 10, 30, 60, 90, 100 };
+                fDataList.Add(fdata);
+                fdata = new float[] { 35, 65, 25, 50, 30 };
+                fDataList.Add(fdata);
+                fdata = new float[] { 10, 30, 60, 90, 100 };
+                fDataList.Add(fdata);
+                fdata = new float[] { 55, 85, 45, 70, 50 };
+                fDataList.Add(fdata);
+
+                xyLineChart = new LineChart(300, 150, LineChartType.MultiDataSet);
+                xyLineChart.SetData(fDataList);
+
+                xyLineChart.AddFillArea(new FillArea("FF0000", 0, 1));
+                xyLineChart.AddFillArea(new FillArea("224499", 1, 2));
+
+                tw.WriteLine(getImageTag(xyLineChart.GetUrl()));
+
+                tw.WriteLine("<br />");
+
+                fdata = new float[] { 10, 30, 75, 40, 15 };
+                chart = new LineChart(150, 150);
+                chart.SetData(fdata);
+                chart.AddFillArea(new FillArea("224499", 0));
+                tw.WriteLine(getImageTag(chart.GetUrl()));
                 #endregion
 
                 #region Bar Charts
