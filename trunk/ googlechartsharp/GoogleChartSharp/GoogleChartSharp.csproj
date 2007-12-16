@@ -42,6 +42,7 @@
     <Compile Include="RangeMarker.cs" />
     <Compile Include="ShapeMarker.cs" />
     <Compile Include="PieChart.cs" />
+    <Compile Include="SolidFill.cs" />
     <Compile Include="VennDiagram.cs" />
     <Compile Include="LineChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
