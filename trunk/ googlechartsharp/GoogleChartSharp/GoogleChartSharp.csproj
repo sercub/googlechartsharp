@@ -39,7 +39,8 @@
     <Compile Include="ChartAxis.cs" />
     <Compile Include="ChartData.cs" />
     <Compile Include="FillArea.cs" />
-    <Compile Include="LinearGradient.cs" />
+    <Compile Include="LinearGradientFill.cs" />
+    <Compile Include="LinearStripesFill.cs" />
     <Compile Include="RangeMarker.cs" />
     <Compile Include="ShapeMarker.cs" />
     <Compile Include="PieChart.cs" />

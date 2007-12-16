@@ -97,14 +97,24 @@ namespace Tests
                 chart.AddFillArea(new FillArea("224499", 0));
                 tw.WriteLine(getImageTag(chart.GetUrl()));
 
-                // Test linear gradients
+                // Test linear gradient
                 fdata = new float[] { 10, 30, 75, 40, 15 };
                 chart = new LineChart(150,150);
                 chart.SetData(fdata);
-                LinearGradient linearGradient = new LinearGradient(ChartFillTarget.ChartArea, 0);
+                LinearGradientFill linearGradient = new LinearGradientFill(ChartFillTarget.ChartArea, 0);
                 linearGradient.AddColorOffsetPair("76A4FB", 1);
                 linearGradient.AddColorOffsetPair("FFFFFF", 0);
-                chart.AddLinearGradient(linearGradient);
+                chart.AddLinearGradientFill(linearGradient);
+                tw.WriteLine(getImageTag(chart.GetUrl()));
+
+                // Test linear stripes
+                fdata = new float[] { 10, 30, 75, 40, 15 };
+                chart = new LineChart(150, 150);
+                chart.SetData(fdata);
+                LinearStripesFill linearStripesFill = new LinearStripesFill(ChartFillTarget.ChartArea, 0);
+                linearStripesFill.AddColorWidthPair("CCCCCC", 0.2);
+                linearStripesFill.AddColorWidthPair("FFFFFF", 0.2);
+                chart.AddLinearStripesFill(linearStripesFill);
                 tw.WriteLine(getImageTag(chart.GetUrl()));
                 #endregion
 
