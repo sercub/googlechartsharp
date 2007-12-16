@@ -1,5 +1,3 @@
-#Explains chart data and datasets.
-
 == Single Dataset ==
 A single dataset can be contained in either an int[] or a float[]. You set a chart's data set using the Chart.SetData() method.
 
