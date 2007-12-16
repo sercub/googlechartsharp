@@ -19,32 +19,52 @@ namespace GoogleChartSharp
         int upperBound;
         int lowerBound;
         bool rangeSet;
-        string hexColor;
+        string color;
         int fontSize = -1;
         AxisAlignmentType alignment = AxisAlignmentType.Unset;
 
-        public string HexColor
+        #region Properties
+        /// <summary>
+        /// an RRGGBB format hexadecimal number
+        /// </summary>
+        public string Color
         {
-            get { return hexColor; }
-            set { hexColor = value; }
+            get { return color; }
+            set { color = value; }
         }
 
+        /// <summary>
+        /// optional if used this specifies the size in pixels
+        /// </summary>
         public int FontSize
         {
             get { return fontSize; }
             set { fontSize = value; }
         }
 
+        /// <summary>
+        /// optional use 0 for centered, -1 for left aligned, and 1 for right aligned.
+        /// </summary>
         public AxisAlignmentType Alignment
         {
             get { return alignment; }
             set { alignment = value; }
         }
+        #endregion
 
+        /// <summary>
+        /// Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
+        /// </summary>
+        /// <param name="axisType">Axis position</param>
         public ChartAxis(ChartAxisType axisType) : this(axisType, null)
         {
         }
 
+        /// <summary>
+        /// Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
+        /// </summary>
+        /// <param name="axisType">Axis position</param>
+        /// <param name="labels">These labels will be added to the axis without position information</param>
         public ChartAxis(ChartAxisType axisType, string[] labels)
         {
             this.axisType = axisType;
@@ -58,6 +78,11 @@ namespace GoogleChartSharp
             }
         }
 
+        /// <summary>
+        /// Specify the axis range
+        /// </summary>
+        /// <param name="lowerBound">the lowest value on the axis</param>
+        /// <param name="upperBound">the highest value on the axis</param>
         public void SetRange(int lowerBound, int upperBound)
         {
             this.lowerBound = lowerBound;
@@ -65,6 +90,10 @@ namespace GoogleChartSharp
             this.rangeSet = true;
         }
 
+        /// <summary>
+        /// Add a label to the axis
+        /// </summary>
+        /// <param name="axisLabel"></param>
         public void AddLabel(ChartAxisLabel axisLabel)
         {
             axisLabels.Add(axisLabel);
@@ -72,11 +101,11 @@ namespace GoogleChartSharp
 
         public string UrlAxisStyle()
         {
-            if (hexColor == null)
+            if (color == null)
             {
                 return null;
             }
-            string result = hexColor + ",";
+            string result = color + ",";
             if (fontSize != -1)
             {
                 result += fontSize.ToString() + ",";
@@ -155,22 +184,46 @@ namespace GoogleChartSharp
         }
     }
 
+    /// <summary>
+    /// Describes an axis label
+    /// </summary>
     public class ChartAxisLabel
     {
+        /// <summary>
+        /// This text will be displayed on the axis
+        /// </summary>
         public string Text;
+
+        /// <summary>
+        /// A value within the axis range
+        /// </summary>
         public float Position;
 
+        /// <summary>
+        /// Create an axis label without position information, labels will be evenly spaced on the axis
+        /// </summary>
+        /// <param name="text">The label text</param>
         public ChartAxisLabel(string text)
             : this(text, -1)
         {
         }
 
+        /// <summary>
+        /// Create an axis label without label text. The axis label will be evenly spaced on the axis and the text will
+        /// be it's numeric position within the axis range.
+        /// </summary>
+        /// <param name="position"></param>
         public ChartAxisLabel(float position)
             : this(null, position)
         {
 
         }
 
+        /// <summary>
+        /// Create an axis label with label text and position.
+        /// </summary>
+        /// <param name="text">The label text</param>
+        /// <param name="position">The label position within the axis range</param>
         public ChartAxisLabel(string text, float position)
         {
             this.Text = text;
@@ -178,6 +231,9 @@ namespace GoogleChartSharp
         }
     }
 
+    /// <summary>
+    /// Chart axis locations
+    /// </summary>
     public enum ChartAxisType
     {
         Bottom,
