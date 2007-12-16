@@ -32,7 +32,7 @@ namespace Tests
 
                 ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
                 bottomAxis.SetRange(0, 500);
-                bottomAxis.HexColor = "00FF00";
+                bottomAxis.Color = "00FF00";
                 bottomAxis.FontSize = 14;
                 chart.AddAxis(bottomAxis);
 
