@@ -14,3 +14,4 @@
   * [LinearGradientFill Linear Gradient Fill]
   * [LinearStripes Linear Stripes Fill]
   * [LineAreaFills Line Area Fills] - Fill the area below / between lines
+  * [RangeMarkers Range Markers] - Mark ranges by creating colored bands across the chart
