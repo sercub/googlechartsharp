@@ -13,7 +13,11 @@ lineChart.SetData(dataset);
 lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
 
+// Assign a color to each dataset in the same order the datasets were added
 lineChart.SetDatasetColors(new string[] { "FF0000", "00FF00" });
+
+// Specify legend labels in the same way
+// The legend will use the dataset color
 lineChart.SetLegend(new string[] { "line1", "line2" });
 
 lineChart.GetUrl();
