@@ -75,3 +75,40 @@ lineChart.SetLegend(new string[] {"First", "Second"});
 
 string url = lineChart.GetUrl();
 }}}
+
+== XKCD Example ==
+{{{
+// These data represent the Y-axis coordinates of the line
+// They will be evenly spaced along the X-axis
+float[] data = new float[] {35, 30, 26, 22, 17,  5, 96,  5,  4,  3,  2,  2,  1,  1};
+
+// Create the bottom X-axis that will contain the BAC numbers
+ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
+bottomAxis.SetRange(0, 30);
+
+string[] axisLabels = new string[] {".00", ".02", ".04", ".06", ".08", ".10",
+                                    ".12", ".14", ".16", ".18", ".20", ".22",
+                                    ".24", ".26"};
+
+// The labels are positioned across the X-axis in relation to the axis range
+// They will be located at positions {0, 2, 4, 6 ... 28}
+for (int i = 0; i < axisLabels.Length; i++)
+{
+    bottomAxis.AddLabel(new ChartAxisLabel(axisLabels[i], i*2));
+}
+
+// Create another bottom X-axis that we will stack under our BAC numbers
+ChartAxis bottomAxis2 = new ChartAxis(ChartAxisType.Bottom);
+bottomAxis2.AddLabel(new ChartAxisLabel("Blood Alcohol Concentration (%)", 50));
+
+LineChart lineChart = new LineChart(400, 200);
+lineChart.SetTitle("Programming Skill", "000000", 14);
+lineChart.SetData(data);
+
+// If two axis are set to the same location the first one added will be closest
+// to the chart
+lineChart.AddAxis(bottomAxis);
+lineChart.AddAxis(bottomAxis2);
+return lineChart.GetUrl();
+}}}
+[http://chart.apis.google.com/chart?cht=lc&chs=400x200&chd=t:35,30,26,22,17,5,96,5,4,3,2,2,1,1&chtt=Programming+Skill&chts=000000,14&chxt=x,x&chxl=0:|.00|.02|.04|.06|.08|.10|.12|.14|.16|.18|.20|.22|.24|.26|1:|Blood%20Alcohol%20Concentration%20(%)&chxp=0,0,2,4,6,8,10,12,14,16,18,20,22,24,26|1,50&chxr=0,0,30&chxs= See this chart]
