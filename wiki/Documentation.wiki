@@ -1,5 +1,5 @@
 === General ===
-*[ChartData How to get your data into a chart]
+ * [ChartData How to get your data into a chart]
 
 === Chart Types ===
 
