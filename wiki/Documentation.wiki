@@ -1,6 +1,7 @@
 #labels Featured
  # === General ===
   * [ChartData Chart Data] - How to get your data into a chart
+  * [UsageExamples Usage Examples] - Some general usage examples
  # === Chart Types ===
   * [PieCharts Pie Charts]
   * [BarCharts Bar Charts]
