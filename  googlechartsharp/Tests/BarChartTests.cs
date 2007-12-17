@@ -37,7 +37,7 @@ namespace Tests
             dataset.Add(data2);
 
             BarChart barChart = new BarChart(150, 150, BarChartOrientation.Vertical, BarChartStyle.Stacked);
-            barChart.SetTitle("Vertical Grouped");
+            barChart.SetTitle("Vertical Stacked");
             barChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
