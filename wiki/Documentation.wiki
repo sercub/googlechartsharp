@@ -1,4 +1,7 @@
+#labels Featured
  # === General ===
-  * Chart Data - [ChartData How to get your data into a chart]
+  * [ChartData Chart Data] - How to get your data into a chart
  # === Chart Types ===
+  * [PieCharts Pie Charts]
+  * [BarCharts Bar Charts]
  # === Effects ===
