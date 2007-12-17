@@ -68,6 +68,14 @@ namespace Tests
                 tw.WriteLine("<h3>Scatter Plots</h3>");
                 tw.WriteLine(getImageTag(ScatterPlotTests.scatterPlotTest()));
                 #endregion
+
+                #region Examples
+                tw.WriteLine("<h3>Examples</h3>");
+                tw.WriteLine(getImageTag(Examples.simpleAxis()));
+                tw.WriteLine(getImageTag(Examples.axisLabels()));
+                tw.WriteLine(getImageTag(Examples.axisRange()));
+                tw.WriteLine(getImageTag(Examples.stackingAxes()));
+                #endregion
             }
 
             Process.Start(new FileInfo("test.html").FullName);
