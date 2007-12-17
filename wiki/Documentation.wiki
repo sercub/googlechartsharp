@@ -11,6 +11,7 @@
   * [ScatterPlots Scatter Plots]
  # === Effects ===
   * [DataSetColorsAndLegend Dataset colors and legend]
+  * [Grids Grid Lines]
   * [SolidFill Solid Fill] - Fill an area with a solid color
   * [LinearGradientFill Linear Gradient Fill]
   * [LinearStripes Linear Stripes Fill]
