@@ -1,4 +1,3 @@
-#labels Featured
 === Two Dimensional Pie Chart Example ===
 {{{
 int[] data = new int[] { 10, 20, 30, 40 };
