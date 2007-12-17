@@ -57,3 +57,25 @@ lineChart.SetData(line1);
 return lineChart.GetUrl();
 }}}
 [http://chart.apis.google.com/chart?cht=lc&chs=150x150&chd=s:FKyiKZ&chxt=x&chxl=0:&chxp=&chxr=0,0,50&chxs= See this chart]
+
+=== Stacking Axises ===
+{{{
+/*
+It is possible to stack axises by adding more than one to the same location 
+on the chart. Here we are adding two axes to the bottom of the chart. Note 
+that the first axis added in the closest to the chart.
+*/
+ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
+ChartAxis bottomAxis2 = new ChartAxis(ChartAxisType.Bottom);
+bottomAxis2.SetRange(0, 50);
+
+int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+LineChart lineChart = new LineChart(150, 150);
+
+lineChart.AddAxis(bottomAxis);
+lineChart.AddAxis(bottomAxis2);
+
+lineChart.SetData(line1);
+return lineChart.GetUrl();
+}}}
+[http://chart.apis.google.com/chart?cht=lc&chs=150x150&chd=s:FKyiKZ&chxt=x,x&chxl=0:|1:&chxp=&chxr=1,0,50&chxs= See this chart]
