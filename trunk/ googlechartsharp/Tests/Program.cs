@@ -14,6 +14,8 @@ namespace Tests
         {
             using (TextWriter tw = new StreamWriter(("test.html")))
             {
+                tw.WriteLine(getImageTag(Examples.xkcd()));
+                tw.WriteLine("<br />");
                 # region Line Charts
                 tw.WriteLine("<h3>Line Charts</h3>");
                 tw.WriteLine(getImageTag(LineChartTests.singleDatasetPerLine()));
@@ -75,6 +77,8 @@ namespace Tests
                 tw.WriteLine(getImageTag(Examples.axisLabels()));
                 tw.WriteLine(getImageTag(Examples.axisRange()));
                 tw.WriteLine(getImageTag(Examples.stackingAxes()));
+
+
                 #endregion
             }
 
