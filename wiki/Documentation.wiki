@@ -1,6 +1,4 @@
-=== General ===
- * [ChartData How to get your data into a chart]
-
-=== Chart Types ===
-
-=== Effects ===
+ # === General ===
+  * Chart Data - [ChartData How to get your data into a chart]
+ # === Chart Types ===
+ # === Effects ===
