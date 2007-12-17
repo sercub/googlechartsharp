@@ -6,4 +6,5 @@
   * [LineCharts Line Charts]
   * [BarCharts Bar Charts]
   * [PieCharts Pie Charts]
+  * [ScatterPlots Scatter Plots]
  # === Effects ===
