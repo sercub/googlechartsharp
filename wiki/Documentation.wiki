@@ -10,7 +10,7 @@
   * [VennDiagrams Venn Diagrams]
   * [ScatterPlots Scatter Plots]
  # === Effects ===
-  * [DataSetColorsAndLegend Dataset colors and legend]
+  * [DataSetColorsAndLegend Dataset colors and legend] - Sounds dramatic
   * [Grids Grid Lines]
   * [SolidFill Solid Fill] - Fill an area with a solid color
   * [LinearGradientFill Linear Gradient Fill]
