@@ -1,5 +1,6 @@
 === Stacked Bar Chart Example ===
 {{{
+// In this type of bar chart the datasets are stacked on top of each other
 int[] data1 = new int[] { 10, 5, 20, 15 };
 int[] data2 = new int[] { 10, 10, 10, 10 };
 
@@ -27,6 +28,7 @@ barChart.GetUrl();
 
 === Grouped Bar Chart Example ===
 {{{
+// In this type of bar chart the dataset items are displayed side by side
 int[] data1 = new int[] { 10, 5, 20 };
 int[] data2 = new int[] { 30, 35, 15 };
 
