@@ -7,6 +7,14 @@ namespace Tests
 {
     class Examples
     {
+        public static string superSimple()
+        {
+            int[] data = new int[] { 0, 10, 20, 30, 40 };
+            LineChart chart = new LineChart(150, 150);
+            chart.SetData(data);
+            return chart.GetUrl();
+        }
+
         public static string simpleAxis()
         {
             ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
