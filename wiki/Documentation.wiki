@@ -3,6 +3,7 @@
   * [ChartData Chart Data] - How to get your data into a chart
   * [UsageExamples Usage Examples] - Some general usage examples
  # === Chart Types ===
-  * [PieCharts Pie Charts]
+  * [LineCharts Line Charts]
   * [BarCharts Bar Charts]
+  * [PieCharts Pie Charts]
  # === Effects ===
