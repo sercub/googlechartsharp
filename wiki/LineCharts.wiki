@@ -19,7 +19,7 @@ lineChart.SetTitle("Single Dataset Per Line", "0000FF", 14);
 lineChart.SetData(datasets);
 
 // If we create an axis with only this parameter it will
-// have a range of 0-100 and be evenly spaced across the axis
+// have a range of 0-100 and be evenly spaced across the chart
 lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
 
