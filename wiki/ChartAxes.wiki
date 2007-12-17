@@ -1,0 +1,17 @@
+=== Adding an axis===
+{{{
+/*
+This is the simplest way to add an axis to a chart. The only 
+parameter is the axis location. The axis will have an evenly spaced range
+from 0 to 100
+*/
+ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
+
+int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+LineChart lineChart = new LineChart(150, 150);
+
+lineChart.AddAxis(bottomAxis);
+lineChart.SetData(line1);
+lineChart.GetUrl();
+}}}
+[http://chart.apis.google.com/chart?cht=lc&chs=150x150&chd=s:FKyiKZ&chxt=x&chxl=0:&chxp=&chxr=&chxs= See this chart]
