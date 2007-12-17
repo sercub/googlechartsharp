@@ -10,3 +10,4 @@
   * [VennDiagrams Venn Diagrams]
   * [ScatterPlots Scatter Plots]
  # === Effects ===
+  * [SolidFill Solid Fills]
