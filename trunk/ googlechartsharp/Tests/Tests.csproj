@@ -34,6 +34,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AxesTests.cs" />
     <Compile Include="BarChartTests.cs" />
     <Compile Include="Examples.cs" />
     <Compile Include="FillsTests.cs" />

@@ -14,7 +14,17 @@ namespace Tests
         {
             using (TextWriter tw = new StreamWriter(("test.html")))
             {
-                
+
+                #region Axes
+                tw.WriteLine("<h3>Axes</h3>");
+                tw.WriteLine(getImageTag(AxesTests.allBasicAxesTest()));
+                tw.WriteLine(getImageTag(AxesTests.axesLabelsTest()));
+                tw.WriteLine(getImageTag(AxesTests.axesRangeTest()));
+                tw.WriteLine("<br />");
+                tw.WriteLine(getImageTag(AxesTests.axesStyleTest()));
+                tw.WriteLine(getImageTag(AxesTests.stackedAxesTest()));
+                #endregion
+
                 # region Line Charts
                 tw.WriteLine("<h3>Line Charts</h3>");
                 tw.WriteLine(getImageTag(LineChartTests.singleDatasetPerLine()));
