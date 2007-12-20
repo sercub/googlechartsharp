@@ -50,14 +50,20 @@ namespace Tests
         public static string horizontalGroupedTest()
         {
             int[] data1 = new int[] { 10, 5, 20 };
+            int[] data2 = new int[] { 5, 10, 20 };
+
+            List<int[]> dataset = new List<int[]>();
+            dataset.Add(data1);
+            dataset.Add(data2);
 
             BarChart barChart = new BarChart(150, 150, BarChartOrientation.Horizontal, BarChartStyle.Grouped);
             barChart.SetTitle("Horizontal Grouped");
             barChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
-            barChart.SetData(data1);
+            barChart.SetData(dataset);
 
             barChart.SetDatasetColors(new string[] { "FF0000", "00AA00" });
+            barChart.SetBarWidth(10);
 
             return barChart.GetUrl();
         }
