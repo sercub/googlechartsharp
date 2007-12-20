@@ -20,6 +20,8 @@ namespace Tests
                 tw.WriteLine(getImageTag(LineChartTests.singleDatasetPerLine()));
                 tw.WriteLine(getImageTag(LineChartTests.multiDatasetPerLine()));
                 tw.WriteLine(getImageTag(LineChartTests.lineColorAndLegendTest()));
+                tw.WriteLine("<br />");
+                tw.WriteLine(getImageTag(LineChartTests.lineStyleTest()));
                 #endregion
 
                 #region Fills
