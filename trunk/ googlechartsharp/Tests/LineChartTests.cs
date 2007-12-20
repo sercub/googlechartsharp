@@ -69,5 +69,26 @@ namespace Tests
 
             return lineChart.GetUrl();
         }
+
+        public static string lineStyleTest()
+        {
+            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = new int[] { 15, 20, 60, 44, 20, 35 };
+
+            List<int[]> dataset = new List<int[]>();
+            dataset.Add(line1);
+            dataset.Add(line2);
+
+            LineChart lineChart = new LineChart(250, 150);
+            lineChart.SetTitle("Line Style Test", "0000FF", 14);
+            lineChart.SetData(dataset);
+            lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
+            lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
+
+            lineChart.AddLineStyle(new LineStyle(2, 5, 1));
+            lineChart.AddLineStyle(new LineStyle(1, 1, 5));
+
+            return lineChart.GetUrl();
+        }
     }
 }
