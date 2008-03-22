@@ -44,6 +44,7 @@ namespace GoogleChartSharp
         BarChartOrientation orientation;
         BarChartStyle style;
         int barWidth;
+        double zeroLine = 0;
 
         /// <summary>
         /// Create a bar chart
@@ -69,6 +70,15 @@ namespace GoogleChartSharp
         }
 
         /// <summary>
+        /// Specify a zero line
+        /// </summary>
+        /// <param name="zeroLine"></param>
+        public void SetZeroLine(double zeroLine)
+        {
+            this.zeroLine = zeroLine;
+        }
+
+        /// <summary>
         /// Return the chart identifier used in the chart url.
         /// </summary>
         /// <returns></returns>
@@ -89,6 +99,10 @@ namespace GoogleChartSharp
             if (this.barWidth != 0)
             {
                 base.urlElements.Enqueue(String.Format("chbh={0}", this.barWidth));
+            }
+            if (this.zeroLine != 0)
+            {
+                base.urlElements.Enqueue(String.Format("chp={0}", this.zeroLine));
             }
         }
 

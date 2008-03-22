@@ -65,6 +65,8 @@ namespace Tests
                 tw.WriteLine(getImageTag(BarChartTests.verticalStackedTest()));
                 tw.WriteLine(getImageTag(BarChartTests.horizontalGroupedTest()));
                 tw.WriteLine(getImageTag(BarChartTests.verticalGroupedTest()));
+                tw.WriteLine("<br />");
+                tw.WriteLine(getImageTag(BarChartTests.zeroLineTest()));
                 #endregion
 
                 #region Pie Charts

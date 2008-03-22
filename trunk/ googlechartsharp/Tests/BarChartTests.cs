@@ -87,5 +87,26 @@ namespace Tests
 
             return barChart.GetUrl();
         }
+
+        public static string zeroLineTest()
+        {
+            int[] data1 = new int[] { 10, 5, 20 };
+            int[] data2 = new int[] { 30, 35, 20 };
+
+            List<int[]> dataset = new List<int[]>();
+            dataset.Add(data1);
+            dataset.Add(data2);
+
+            BarChart barChart = new BarChart(300, 150, BarChartOrientation.Vertical, BarChartStyle.Grouped);
+            barChart.SetTitle("Zero Line");
+            barChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
+            barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
+            barChart.SetZeroLine(0.25);
+            barChart.SetData(dataset);
+
+            barChart.SetDatasetColors(new string[] { "FF0000", "00AA00" });
+
+            return barChart.GetUrl();
+        }
     }
 }
