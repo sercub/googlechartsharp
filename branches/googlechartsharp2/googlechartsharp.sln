@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{730AAE6C-5536-4287-AC68-A8ACFB946569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "googlechartsharp", "googlechartsharp\googlechartsharp.csproj", "{30912870-68D1-4250-AE2F-BA2280554268}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{730AAE6C-5536-4287-AC68-A8ACFB946569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{730AAE6C-5536-4287-AC68-A8ACFB946569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{730AAE6C-5536-4287-AC68-A8ACFB946569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{730AAE6C-5536-4287-AC68-A8ACFB946569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30912870-68D1-4250-AE2F-BA2280554268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30912870-68D1-4250-AE2F-BA2280554268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30912870-68D1-4250-AE2F-BA2280554268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30912870-68D1-4250-AE2F-BA2280554268}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
