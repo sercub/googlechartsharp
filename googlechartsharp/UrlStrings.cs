@@ -53,10 +53,10 @@ namespace googlechartsharp
 
             foreach (DataSet dataSet in dataSets)
             {
-                result += dataSet.ToString(encodingType) + DataSet.Delimiter;
+                result += dataSet.ToString(encodingType) + DataSet.GetDelimiter(encodingType);
             }
 
-            return result.TrimEnd(DataSet.Delimiter.ToCharArray());
+            return result.TrimEnd(DataSet.GetDelimiter(encodingType).ToCharArray());
         }
 
         internal static string ChartTitle(ChartTitle chartTitle)
@@ -67,6 +67,23 @@ namespace googlechartsharp
             }
 
             return string.Empty;
+        }
+
+        internal static string DataSetColors(List<string> colors)
+        {
+            if (colors.Count == 0)
+            {
+                return string.Empty;
+            }
+
+            string result = "chco=";
+
+            foreach (string color in colors)
+            {
+                result += color + ",";
+            }
+
+            return result.TrimEnd(",".ToCharArray());
         }
     }
 }
