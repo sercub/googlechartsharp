@@ -85,5 +85,44 @@ namespace googlechartsharp
 
             return result.TrimEnd(",".ToCharArray());
         }
+
+        internal static string SolidFills(List<SolidFill> solidFills)
+        {
+            if (solidFills.Count == 0)
+            {
+                return string.Empty;
+            }
+
+            string result = "chf=";
+
+            foreach (SolidFill solidFill in solidFills)
+            {
+                result += solidFill.ToString() + SolidFill.GetDelimiter();
+            }
+            result = result.TrimEnd(SolidFill.GetDelimiter().ToCharArray());
+
+            return result;
+        }
+
+        internal static string Fills(List<AreaFill> areaFills)
+        {
+            string result = string.Empty;
+
+            if (areaFills.Count > 0)
+            {
+                foreach (AreaFill areaFill in areaFills)
+                {
+                    result += areaFill.ToString() + AreaFill.GetDelimiter();
+                }
+                result = result.TrimEnd(AreaFill.GetDelimiter().ToCharArray());
+            }
+
+            if (result == string.Empty)
+            {
+                return result;
+            }
+
+            return "chm=" + result;
+        }
     }
 }
