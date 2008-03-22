@@ -25,6 +25,13 @@ namespace Tests
                 tw.WriteLine(imageTag(LineChartTests.SimpleLineTest()));
                 tw.WriteLine(imageTag(LineChartTests.PairLineTest()));
                 tw.WriteLine(imageTag(LineChartTests.SparklineTest()));
+
+                tw.WriteLine();
+
+                tw.WriteLine("<h3>Fills</h3>");
+                tw.WriteLine(imageTag(FillsTests.SingleLineAreaFill()));
+                tw.WriteLine(imageTag(FillsTests.MultiLineAreaFill()));
+                tw.WriteLine(imageTag(FillsTests.SolidFillTest()));
             }
 
             Process.Start(new FileInfo("test.html").FullName);

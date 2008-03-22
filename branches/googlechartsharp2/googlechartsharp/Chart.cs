@@ -15,6 +15,8 @@ namespace googlechartsharp
         private List<DataSet> dataSets = new List<DataSet>();
         private ChartTitle chartTitle = null;
         private List<string> dataSetColors = new List<string>();
+        private List<AreaFill> areaFills = new List<AreaFill>();
+        private List<SolidFill> solidFills = new List<SolidFill>();
 
         public Chart(ChartTypes chartType, int width, int height)
         {
@@ -48,6 +50,16 @@ namespace googlechartsharp
             this.dataSetColors.Add(color);
         }
 
+        public void AddFill(AreaFill areaFill)
+        {
+            areaFills.Add(areaFill);
+        }
+
+        public void AddFill(SolidFill solidFill)
+        {
+            solidFills.Add(solidFill);
+        }
+
         public string GetUrlString()
         {
             Queue<string> pieces = CollectUrlPieces();
@@ -56,7 +68,11 @@ namespace googlechartsharp
             url += pieces.Dequeue();
             while (pieces.Count > 0)
             {
-                url += "&" + pieces.Dequeue();
+                string piece = pieces.Dequeue();
+                if (!string.IsNullOrEmpty(piece))
+                {
+                    url += "&" + piece;
+                }
             }
             
             return url;
@@ -71,6 +87,8 @@ namespace googlechartsharp
             pieces.Enqueue(UrlStrings.ChartData(this.encodingType, this.dataSets));
             pieces.Enqueue(UrlStrings.ChartTitle(this.chartTitle));
             pieces.Enqueue(UrlStrings.DataSetColors(this.dataSetColors));
+            pieces.Enqueue(UrlStrings.Fills(areaFills));
+            pieces.Enqueue(UrlStrings.SolidFills(solidFills));
 
             return pieces;
         }
