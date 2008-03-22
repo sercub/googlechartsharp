@@ -32,6 +32,7 @@ namespace Tests
                 tw.WriteLine(getImageTag(LineChartTests.lineColorAndLegendTest()));
                 tw.WriteLine("<br />");
                 tw.WriteLine(getImageTag(LineChartTests.lineStyleTest()));
+                tw.WriteLine(getImageTag(LineChartTests.sparklines()));
                 #endregion
 
                 #region Fills

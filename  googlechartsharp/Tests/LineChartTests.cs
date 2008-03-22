@@ -27,6 +27,20 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
+        public static string sparklines()
+        {
+            float[] line1 = new float[] { 27, 25, 25, 25, 25, 27, 100, 31, 25, 36, 25, 25, 39, 25, 31, 25, 25, 25, 26, 26, 25, 25, 28, 25, 25, 100, 28, 27, 31, 25, 27, 27, 29, 25, 27, 26, 26, 25, 26, 26, 35, 33, 34, 25, 26, 25, 36, 25, 26, 37, 33, 33, 37, 37, 39, 25, 25, 25, 25 };
+
+            List<float[]> dataset = new List<float[]>();
+            dataset.Add(line1);
+
+            LineChart lineChart = new LineChart(250, 150, LineChartType.Sparklines);
+            lineChart.SetData(dataset);
+            lineChart.SetTitle("Sparklines test");
+
+            return lineChart.GetUrl();
+        }
+
         public static string multiDatasetPerLine()
         {
             int[] line1x = new int[] { 0, 15, 30, 45, 60 };
