@@ -1,0 +1,5 @@
+C:\Projects\GCS2\GCS2\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\GCS2\GCS2\bin\Debug\GCS2.dll
+C:\Projects\GCS2\GCS2\bin\Debug\GCS2.pdb
+C:\Projects\GCS2\GCS2\obj\Debug\GCS2.dll
+C:\Projects\GCS2\GCS2\obj\Debug\GCS2.pdb
