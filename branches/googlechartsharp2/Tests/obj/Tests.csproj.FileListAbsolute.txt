@@ -1,7 +1,0 @@
-C:\Projects\GCS2\Tests\bin\Debug\Tests.exe
-C:\Projects\GCS2\Tests\bin\Debug\Tests.pdb
-C:\Projects\GCS2\Tests\obj\Debug\ResolveAssemblyReference.cache
-C:\Projects\GCS2\Tests\obj\Debug\Tests.exe
-C:\Projects\GCS2\Tests\obj\Debug\Tests.pdb
-C:\Projects\GCS2\Tests\bin\Debug\GCS2.dll
-C:\Projects\GCS2\Tests\bin\Debug\GCS2.pdb
