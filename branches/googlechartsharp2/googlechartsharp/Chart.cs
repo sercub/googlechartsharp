@@ -14,6 +14,7 @@ namespace googlechartsharp
         private EncodingTypes encodingType;
         private List<DataSet> dataSets = new List<DataSet>();
         private ChartTitle chartTitle = null;
+        private List<string> dataSetColors = new List<string>();
 
         public Chart(ChartTypes chartType, int width, int height)
         {
@@ -42,6 +43,11 @@ namespace googlechartsharp
             this.chartTitle = chartTitle;
         }
 
+        public void AddDataSetColor(string color)
+        {
+            this.dataSetColors.Add(color);
+        }
+
         public string GetUrlString()
         {
             Queue<string> pieces = CollectUrlPieces();
@@ -64,6 +70,7 @@ namespace googlechartsharp
             pieces.Enqueue(UrlStrings.ChartSize(this.width, this.height));
             pieces.Enqueue(UrlStrings.ChartData(this.encodingType, this.dataSets));
             pieces.Enqueue(UrlStrings.ChartTitle(this.chartTitle));
+            pieces.Enqueue(UrlStrings.DataSetColors(this.dataSetColors));
 
             return pieces;
         }

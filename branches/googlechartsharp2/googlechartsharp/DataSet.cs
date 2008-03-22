@@ -34,9 +34,19 @@ namespace googlechartsharp
             return string.Empty;
         }
 
-        public static string Delimiter
+        public static string GetDelimiter(EncodingTypes encoding)
         {
-            get { return "|"; }
+            switch (encoding)
+            {
+                case EncodingTypes.Simple:
+                    return ",";
+                case EncodingTypes.Extended:
+                    return ",";
+                case EncodingTypes.Text:
+                    return "|";
+            }
+
+            return string.Empty;
         }
     }
 

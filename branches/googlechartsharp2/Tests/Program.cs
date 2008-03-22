@@ -14,9 +14,17 @@ namespace Tests
         {
             using (TextWriter tw = new StreamWriter(("test.html")))
             {
+                tw.WriteLine("<h3>Data Encoding</h3>");
                 tw.WriteLine(imageTag(DataTests.SimpleEncodingTest()));
                 tw.WriteLine(imageTag(DataTests.ExtendedEncodingTest()));
                 tw.WriteLine(imageTag(DataTests.TextEncodingTest()));
+
+                tw.WriteLine("<br />");
+
+                tw.WriteLine("<h3>Line Charts</h3>");
+                tw.WriteLine(imageTag(LineChartTests.SimpleLineTest()));
+                tw.WriteLine(imageTag(LineChartTests.PairLineTest()));
+                tw.WriteLine(imageTag(LineChartTests.SparklineTest()));
             }
 
             Process.Start(new FileInfo("test.html").FullName);
